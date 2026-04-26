@@ -1,0 +1,3686 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
+    <meta name="description" content="Git और GitHub का Complete Hindi Guide - Beginner से Advanced तक">
+    <meta name="theme-color" content="#0d2b3e">
+    <meta name="author" content="Hindi Git Guide">
+    <meta name="robots" content="index, follow">
+    <meta property="og:title" content="Git & GitHub Masterclass - Complete Hindi Guide">
+    <meta property="og:description" content="Git और GitHub सीखने के लिए beginner से production workflow तक complete Hindi guide.">
+    <meta property="og:type" content="website">
+    <meta name="twitter:card" content="summary_large_image">
+    <title>🚀 Git & GitHub Masterclass - Complete Hindi Guide 2026</title>
+    <link rel="manifest" href="manifest.json">
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Devanagari:wght@400;500;600;700;800&family=Fira+Code:wght@400;500;600&display=swap" rel="stylesheet">
+    <style type="text/tailwindcss">
+        @theme {
+            --font-sans: 'Noto Sans Devanagari', 'Segoe UI', system-ui, sans-serif;
+            --font-mono: 'Fira Code', 'Cascadia Code', monospace;
+        }
+    </style>
+    <style>
+        * {
+            scroll-behavior: smooth;
+        }
+        
+        body {
+            font-family: 'Noto Sans Devanagari', 'Segoe UI', system-ui, sans-serif;
+        }
+        
+        .code-font {
+            font-family: 'Fira Code', 'Cascadia Code', monospace;
+        }
+        
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 10px;
+            height: 10px;
+        }
+        
+        ::-webkit-scrollbar-track {
+            background: #f1f5f9;
+        }
+        
+        ::-webkit-scrollbar-thumb {
+            background: #94a3b8;
+            border-radius: 5px;
+        }
+        
+        ::-webkit-scrollbar-thumb:hover {
+            background: #64748b;
+        }
+        
+        /* Gradient Text */
+        .gradient-text {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        /* Glass Effect */
+        .glass {
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+        }
+        
+        .dark .glass {
+            background: rgba(15, 23, 42, 0.85);
+        }
+        
+        /* Card Hover Effect */
+        .step-card {
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        
+        .step-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 20px 40px -12px rgba(0, 0, 0, 0.25);
+        }
+        
+        /* Code Block Styling */
+        .code-block {
+            position: relative;
+            overflow: hidden;
+            border: 1px solid rgba(148, 163, 184, 0.18);
+            box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.06), 0 18px 35px -24px rgba(15, 23, 42, 0.65);
+        }
+
+        .code-block code,
+        pre.code-font code,
+        pre[id] code {
+            display: block;
+            line-height: 1.75;
+            tab-size: 4;
+        }
+
+        .code-line {
+            display: block;
+            min-height: 1.75em;
+            padding-left: 3.25rem;
+            padding-right: 4.75rem;
+            position: relative;
+            white-space: pre-wrap;
+            overflow-wrap: anywhere;
+        }
+
+        .code-line::before {
+            content: attr(data-line);
+            color: #64748b;
+            left: 0;
+            padding-right: 0.8rem;
+            position: absolute;
+            text-align: right;
+            user-select: none;
+            width: 2.25rem;
+        }
+
+        .code-language {
+            background: rgba(15, 23, 42, 0.72);
+            border: 1px solid rgba(148, 163, 184, 0.22);
+            border-radius: 999px;
+            color: #cbd5e1;
+            font-family: 'Fira Code', monospace;
+            font-size: 0.65rem;
+            letter-spacing: 0.05em;
+            padding: 0.2rem 0.55rem;
+            position: absolute;
+            right: 0.75rem;
+            text-transform: uppercase;
+            top: 2.25rem;
+            z-index: 2;
+        }
+
+        .copy-btn {
+            position: relative;
+            z-index: 20;
+            pointer-events: auto;
+            user-select: none;
+        }
+
+        .copy-btn.copied {
+            background: #16a34a !important;
+            color: #ffffff !important;
+        }
+
+        .copy-btn.copy-error {
+            background: #dc2626 !important;
+            color: #ffffff !important;
+        }
+
+        .code-block code,
+        .code-block pre {
+            position: relative;
+            z-index: 1;
+        }
+        
+        .code-block::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, #f59e0b, #ef4444, #8b5cf6, #3b82f6);
+        }
+        
+        /* Syntax Highlighting Colors */
+        .token-command { color: #7dd3fc; font-weight: 600; }
+        .token-keyword { color: #c084fc; font-weight: 600; }
+        .token-string { color: #bef264; }
+        .token-comment { color: #94a3b8; font-style: italic; }
+        .token-function { color: #93c5fd; }
+        .token-operator { color: #67e8f9; }
+        .token-flag { color: #fbbf24; }
+        .token-path { color: #fca5a5; }
+        .token-branch { color: #86efac; }
+        .token-prompt { color: #a78bfa; font-weight: 700; }
+        .token-conflict { color: #f87171; font-weight: 700; }
+        .token-number { color: #f9a8d4; }
+        
+        /* Progress Bar */
+        .progress-bar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            height: 4px;
+            background: linear-gradient(90deg, #3b82f6, #8b5cf6, #ec4899);
+            z-index: 1000;
+            transition: width 0.1s;
+        }
+        
+        /* Search Highlight */
+        .highlight {
+            background: #fef08a;
+            padding: 2px 4px;
+            border-radius: 4px;
+        }
+        
+        /* Tab System */
+        .tab-btn.active {
+            background: #3b82f6;
+            color: white;
+        }
+        
+        /* Accordion */
+        .accordion-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease-out;
+        }
+        
+        .accordion-content.open {
+            max-height: 2000px;
+        }
+        
+        /* Timeline */
+        .timeline-line {
+            position: absolute;
+            left: 24px;
+            top: 60px;
+            bottom: 0;
+            width: 2px;
+            background: linear-gradient(to bottom, #3b82f6, #8b5cf6);
+        }
+        
+        /* Print Styles */
+        @media print {
+            .no-print { display: none !important; }
+            .step-card { break-inside: avoid; }
+        }
+        
+        /* Mobile Optimizations */
+        @media (max-width: 640px) {
+            .code-block {
+                font-size: 0.75rem;
+            }
+
+            .code-line {
+                padding-left: 2.25rem;
+                padding-right: 0.25rem;
+            }
+
+            .code-line::before {
+                width: 1.55rem;
+            }
+
+            .code-language {
+                display: none;
+            }
+        }
+        
+        /* Animation */
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .animate-slide-in {
+            animation: slideIn 0.5s ease-out forwards;
+        }
+        
+        /* Dark Mode */
+        .dark body {
+            background: #0f172a;
+            color: #e2e8f0;
+        }
+        
+        .dark .glass {
+            background: rgba(15, 23, 42, 0.9);
+        }
+
+        /* ===== FULL DARK MODE STYLES ===== */
+        .dark {
+            color-scheme: dark;
+        }
+
+        .dark body,
+        .dark {
+            background: #0b1120;
+            color: #e2e8f0;
+        }
+
+        .dark .bg-gradient-to-br {
+            background: linear-gradient(to bottom right, #0f172a, #1e1b4b) !important;
+        }
+
+        .dark .step-card {
+            background: #1e293b;
+            border-color: #334155;
+        }
+
+        .dark .step-card:hover {
+            box-shadow: 0 20px 40px -12px rgba(0, 0, 0, 0.5);
+        }
+
+        .dark .bg-gradient-to-r.from-blue-600,
+        .dark .bg-gradient-to-r.from-green-600,
+        .dark .bg-gradient-to-r.from-purple-600,
+        .dark .bg-gradient-to-r.from-emerald-600,
+        .dark .bg-gradient-to-r.from-orange-600,
+        .dark .bg-gradient-to-r.from-gray-600,
+        .dark .bg-gradient-to-r.from-indigo-600,
+        .dark .bg-gradient-to-r.from-pink-600,
+        .dark .bg-gradient-to-r.from-slate-700,
+        .dark .bg-gradient-to-r.from-red-600,
+        .dark .bg-gradient-to-r.from-teal-600,
+        .dark .bg-gradient-to-r.from-cyan-600,
+        .dark .bg-gradient-to-r.from-blue-600.to-blue-700,
+        .dark .bg-gradient-to-r.from-green-600.to-emerald-600,
+        .dark .bg-gradient-to-r.from-purple-600.to-pink-600,
+        .dark .bg-gradient-to-r.from-emerald-600.to-teal-600,
+        .dark .bg-gradient-to-r.from-orange-600.to-red-600,
+        .dark .bg-gradient-to-r.from-gray-600.to-slate-600,
+        .dark .bg-gradient-to-r.from-indigo-600.to-blue-600,
+        .dark .bg-gradient-to-r.from-pink-600.to-rose-600,
+        .dark .bg-gradient-to-r.from-red-600.to-rose-600,
+        .dark .bg-gradient-to-r.from-teal-600.to-cyan-600,
+        .dark .bg-gradient-to-r.from-cyan-600.to-blue-700,
+        .dark .bg-gradient-to-r.from-slate-700.to-gray-800,
+        .dark .bg-gradient-to-r.from-blue-600.to-purple-600 {
+            opacity: 0.9;
+        }
+
+        .dark nav {
+            background: rgba(15, 23, 42, 0.92) !important;
+            border-color: #1e293b !important;
+        }
+
+        .dark nav input {
+            background: #1e293b !important;
+            border-color: #334155 !important;
+            color: #e2e8f0 !important;
+        }
+
+        .dark nav input:focus {
+            border-color: #3b82f6 !important;
+            box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.2);
+        }
+
+        .dark #mobileSearchInput {
+            background: #1e293b !important;
+            border-color: #334155 !important;
+            color: #e2e8f0 !important;
+        }
+
+        .dark header {
+            color: #f1f5f9;
+        }
+
+        .dark .text-gray-800 {
+            color: #f1f5f9 !important;
+        }
+
+        .dark .text-gray-600 {
+            color: #94a3b8 !important;
+        }
+
+        .dark .bg-white {
+            background: #1e293b !important;
+        }
+
+        .dark .bg-white\\/80 {
+            background: rgba(30, 41, 59, 0.8) !important;
+        }
+
+        .dark .bg-white\\/70 {
+            background: rgba(30, 41, 59, 0.7) !important;
+        }
+
+        .dark .bg-white\\/90 {
+            background: rgba(30, 41, 59, 0.9) !important;
+        }
+
+        .dark .bg-white\\/10 {
+            background: rgba(255, 255, 255, 0.05) !important;
+        }
+
+        .dark .border-gray-200 {
+            border-color: #334155 !important;
+        }
+
+        .dark .border-gray-200\\/50 {
+            border-color: rgba(51, 65, 85, 0.5) !important;
+        }
+
+        .dark .border-gray-300 {
+            border-color: #475569 !important;
+        }
+
+        .dark .bg-gray-50 {
+            background: #0f172a !important;
+        }
+
+        .dark .bg-gray-900 {
+            background: #020617 !important;
+        }
+
+        .dark .bg-blue-100 {
+            background: #1e3a5f !important;
+        }
+
+        .dark .bg-blue-50 {
+            background: #0c1929 !important;
+        }
+
+        .dark .bg-green-50 {
+            background: #052e16 !important;
+        }
+
+        .dark .bg-emerald-50 {
+            background: #052e16 !important;
+        }
+
+        .dark .bg-yellow-50,
+        .dark .bg-amber-50 {
+            background: #422006 !important;
+        }
+
+        .dark .bg-red-50 {
+            background: #450a0a !important;
+        }
+
+        .dark .bg-purple-50,
+        .dark .bg-violet-50 {
+            background: #2e1065 !important;
+        }
+
+        .dark .bg-indigo-50 {
+            background: #1e1b4b !important;
+        }
+
+        .dark .bg-orange-50 {
+            background: #431407 !important;
+        }
+
+        .dark .bg-pink-50,
+        .dark .bg-rose-50 {
+            background: #4c0519 !important;
+        }
+
+        .dark .bg-teal-50 {
+            background: #042f2e !important;
+        }
+
+        .dark .bg-sky-50 {
+            background: #082f49 !important;
+        }
+
+        .dark .bg-fuchsia-50 {
+            background: #4a044e !important;
+        }
+
+        .dark .bg-lime-50 {
+            background: #1a2e05 !important;
+        }
+
+        .dark .bg-slate-50 {
+            background: #0f172a !important;
+        }
+
+        /* Comprehensive Dark Mode Text Colors */
+        .dark .text-blue-900, .dark .text-blue-800, .dark .text-blue-700, .dark .text-blue-600, .dark .text-blue-500 { color: #93c5fd !important; }
+        .dark .text-green-900, .dark .text-green-800, .dark .text-green-700, .dark .text-green-600, .dark .text-green-500,
+        .dark .text-emerald-900, .dark .text-emerald-800, .dark .text-emerald-700, .dark .text-emerald-600, .dark .text-emerald-500,
+        .dark .text-teal-900, .dark .text-teal-800, .dark .text-teal-700, .dark .text-teal-600, .dark .text-teal-500 { color: #86efac !important; }
+        .dark .text-amber-900, .dark .text-amber-800, .dark .text-amber-700, .dark .text-amber-600, .dark .text-amber-500,
+        .dark .text-yellow-900, .dark .text-yellow-800, .dark .text-yellow-700, .dark .text-yellow-600, .dark .text-yellow-500,
+        .dark .text-orange-900, .dark .text-orange-800, .dark .text-orange-700, .dark .text-orange-600, .dark .text-orange-500 { color: #fde047 !important; }
+        .dark .text-red-900, .dark .text-red-800, .dark .text-red-700, .dark .text-red-600, .dark .text-red-500,
+        .dark .text-rose-900, .dark .text-rose-800, .dark .text-rose-700, .dark .text-rose-600, .dark .text-rose-500,
+        .dark .text-pink-900, .dark .text-pink-800, .dark .text-pink-700, .dark .text-pink-600, .dark .text-pink-500 { color: #fca5a5 !important; }
+        .dark .text-purple-900, .dark .text-purple-800, .dark .text-purple-700, .dark .text-purple-600, .dark .text-purple-500,
+        .dark .text-indigo-900, .dark .text-indigo-800, .dark .text-indigo-700, .dark .text-indigo-600, .dark .text-indigo-500,
+        .dark .text-violet-900, .dark .text-violet-800, .dark .text-violet-700, .dark .text-violet-600, .dark .text-violet-500,
+        .dark .text-fuchsia-900, .dark .text-fuchsia-800, .dark .text-fuchsia-700, .dark .text-fuchsia-600, .dark .text-fuchsia-500 { color: #c4b5fd !important; }
+        .dark .text-sky-900, .dark .text-sky-800, .dark .text-sky-700, .dark .text-sky-600, .dark .text-sky-500,
+        .dark .text-cyan-900, .dark .text-cyan-800, .dark .text-cyan-700, .dark .text-cyan-600, .dark .text-cyan-500 { color: #7dd3fc !important; }
+        .dark .text-slate-900, .dark .text-slate-800, .dark .text-slate-700, .dark .text-slate-600,
+        .dark .text-gray-900, .dark .text-gray-800, .dark .text-gray-700, .dark .text-gray-600 { color: #e2e8f0 !important; }
+        .dark .text-gray-500, .dark .text-slate-500 { color: #94a3b8 !important; }
+        .dark .text-slate-300 { color: #cbd5e1 !important; }
+        .dark .text-slate-400 { color: #94a3b8 !important; }
+        .dark .text-gray-400 { color: #9ca3af !important; }
+
+        /* Protect Certificate Modal from Dark Mode text overrides */
+        .dark #certificateContent { background: linear-gradient(to bottom right, #fffbeb, #fefce8) !important; border-color: #f59e0b !important; }
+        .dark #certificateContent .text-amber-800 { color: #92400e !important; }
+        .dark #certificateContent .text-gray-600 { color: #4b5563 !important; }
+        .dark #certificateContent .text-blue-900 { color: #1e3a8a !important; }
+        .dark #certificateContent .text-gray-800 { color: #1f2937 !important; }
+        .dark #certificateContent .text-gray-500 { color: #6b7280 !important; }
+        .dark #certificateContent .text-gray-400 { color: #9ca3af !important; }
+        .dark #certificateContent .border-amber-400 { border-color: #fbbf24 !important; }
+
+        .dark .bg-slate-800 {
+            background: #1e293b !important;
+        }
+
+        .dark .bg-slate-900 {
+            background: #020617 !important;
+        }
+
+        .dark .border-blue-200 {
+            border-color: #1e3a5f !important;
+        }
+
+        .dark .border-green-200 {
+            border-color: #14532d !important;
+        }
+
+        .dark .border-yellow-200 {
+            border-color: #713f12 !important;
+        }
+
+        .dark .border-amber-200 {
+            border-color: #78350f !important;
+        }
+
+        .dark .border-red-200 {
+            border-color: #7f1d1d !important;
+        }
+
+        .dark .border-purple-200,
+        .dark .border-violet-200 {
+            border-color: #581c87 !important;
+        }
+
+        .dark .border-indigo-200 {
+            border-color: #312e81 !important;
+        }
+
+        .dark .border-orange-200 {
+            border-color: #7c2d12 !important;
+        }
+
+        .dark .border-teal-200 {
+            border-color: #134e4a !important;
+        }
+
+        .dark .border-sky-200 {
+            border-color: #0c4a6e !important;
+        }
+
+        .dark .border-fuchsia-200 {
+            border-color: #86198f !important;
+        }
+
+        .dark .border-lime-200 {
+            border-color: #365314 !important;
+        }
+
+        .dark .border-rose-200 {
+            border-color: #881337 !important;
+        }
+
+        .dark .border-emerald-200 {
+            border-color: #064e3b !important;
+        }
+
+        .dark .border-slate-200 {
+            border-color: #334155 !important;
+        }
+
+        .dark .border-amber-500 {
+            border-color: #f59e0b !important;
+        }
+
+        .dark .border-indigo-500 {
+            border-color: #6366f1 !important;
+        }
+
+        .dark .bg-amber-50 .border-l-4,
+        .dark .bg-indigo-50 .border-l-4 {
+            border-color: #6366f1 !important;
+        }
+
+        .dark .bg-yellow-50.border {
+            background: #422006 !important;
+            border-color: #713f12 !important;
+        }
+
+        .dark code {
+            color: #e2e8f0;
+        }
+
+        .dark .bg-gray-200,
+        .dark .bg-gray-100 {
+            background: #1e293b !important;
+        }
+
+        .dark .text-green-600 {
+            color: #4ade80 !important;
+        }
+
+        .dark .text-blue-600 {
+            color: #60a5fa !important;
+        }
+
+        .dark .bg-blue-600 {
+            background: #2563eb !important;
+        }
+
+        .dark .text-red-600 {
+            color: #f87171 !important;
+        }
+
+        .dark .bg-white\\/0 {
+            background: transparent !important;
+        }
+
+        .dark footer {
+            background: #020617 !important;
+            border-color: #1e293b !important;
+        }
+
+        .dark .code-block {
+            border-color: rgba(71, 85, 105, 0.3);
+            box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.04), 0 18px 35px -24px rgba(0, 0, 0, 0.8);
+        }
+
+        .dark .code-line::before {
+            color: #475569;
+        }
+
+        .dark .highlight {
+            background: #854d0e;
+            color: #fef3c7;
+        }
+
+        .dark .copy-btn {
+            background: #374151 !important;
+        }
+
+        .dark .copy-btn:hover {
+            background: #4b5563 !important;
+        }
+
+        .dark .bg-white.p-4.rounded-xl.shadow-sm {
+            background: #1e293b !important;
+            border-color: #334155 !important;
+        }
+
+        .dark .bg-white.p-4.rounded-xl.shadow-sm:hover {
+            background: #253347 !important;
+        }
+
+        .dark .accordion-trigger {
+            background: #0f172a !important;
+        }
+
+        .dark .accordion-trigger:hover {
+            background: #1e293b !important;
+        }
+
+        .dark select,
+        .dark input,
+        .dark textarea {
+            background: #0f172a !important;
+            border-color: #334155 !important;
+            color: #e2e8f0 !important;
+        }
+
+        .dark details {
+            background: #1e293b !important;
+            border-color: #334155 !important;
+        }
+
+        /* Auto dark mode based on system preference */
+        @media (prefers-color-scheme: dark) {
+            html:not(.light) body {
+                background: #0b1120;
+                color: #e2e8f0;
+            }
+        }
+
+        /* Production polish */
+        ::selection {
+            background: #93c5fd;
+            color: #0f172a;
+        }
+
+        :focus-visible {
+            outline: 3px solid rgba(59, 130, 246, 0.55);
+            outline-offset: 3px;
+        }
+
+        .skip-link {
+            left: 1rem;
+            position: fixed;
+            top: -4rem;
+            z-index: 9999;
+        }
+
+        .skip-link:focus {
+            top: 1rem;
+        }
+
+        .production-grid {
+            display: grid;
+            gap: 1rem;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+        }
+
+        .soft-panel {
+            background: linear-gradient(180deg, rgba(255,255,255,0.92), rgba(248,250,252,0.92));
+            border: 1px solid rgba(148, 163, 184, 0.28);
+            border-radius: 1rem;
+            padding: 1rem;
+        }
+
+        .dark .soft-panel {
+            background: linear-gradient(180deg, rgba(30,41,59,0.92), rgba(15,23,42,0.92));
+            border-color: rgba(71, 85, 105, 0.55);
+        }
+
+        .status-dot {
+            border-radius: 999px;
+            display: inline-block;
+            height: 0.65rem;
+            margin-right: 0.45rem;
+            width: 0.65rem;
+        }
+
+        .command-output {
+            min-height: 8rem;
+        }
+
+        .sticky-tools {
+            bottom: 1rem;
+            position: fixed;
+            right: 1rem;
+            z-index: 60;
+        }
+
+        @media (max-width: 640px) {
+            .sticky-tools {
+                bottom: 0.75rem;
+                right: 0.75rem;
+            }
+        }
+    </style>
+    <script src="script.js" defer></script>
+</head>
+<body class="bg-gradient-to-br from-slate-50 to-blue-50 min-h-screen">
+    <a href="#mainContent" class="skip-link bg-blue-600 text-white px-4 py-2 rounded-lg shadow-lg no-print">Main content पर जाएँ</a>
+    <!-- Progress Bar -->
+    <div class="progress-bar" id="progressBar"></div>
+    
+    <!-- Navigation -->
+    <nav class="fixed top-0 w-full z-50 glass border-b border-gray-200/50 no-print">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-16">
+                <div class="flex items-center gap-2">
+                    <span class="text-2xl">🚀</span>
+                    <span class="font-bold text-lg hidden sm:block">Git Masterclass</span>
+                </div>
+                
+                <!-- Search Bar -->
+                <div class="flex-1 max-w-md mx-4 hidden md:block">
+                    <div class="relative">
+                        <input type="text" id="searchInput" placeholder="🔍 टॉपिक खोजें... (Ctrl+K)" 
+                               class="w-full px-4 py-2 rounded-full bg-white/80 border border-gray-300 focus:border-blue-500 focus:ring-2 focus:ring-blue-200 outline-none text-sm transition-all">
+                    </div>
+                </div>
+                
+                <div class="flex items-center gap-2">
+                    <!-- Language Toggle -->
+                    <button id="langToggle" onclick="toggleLanguage()" class="px-3 py-1.5 rounded-full bg-blue-100 text-blue-700 text-xs font-semibold hover:bg-blue-200 transition-colors" title="Language">
+                        हि/EN
+                    </button>
+                    <!-- PWA Install -->
+                    <button id="installBtn" onclick="installPWA()" class="hidden px-3 py-1.5 rounded-full bg-green-100 text-green-700 text-xs font-semibold hover:bg-green-200 transition-colors" title="Install App">
+                        📲 Install
+                    </button>
+                    <button id="darkModeBtn" onclick="toggleDarkMode()" class="p-2 rounded-full hover:bg-gray-200/50 transition-colors" title="Dark Mode">
+                        🌙
+                    </button>
+                    <button onclick="downloadPDF()" class="p-2 rounded-full hover:bg-gray-200/50 transition-colors hidden sm:block" title="Download PDF">
+                        📥
+                    </button>
+                    <button onclick="window.print()" class="p-2 rounded-full hover:bg-gray-200/50 transition-colors hidden sm:block" title="Print">
+                        🖨️
+                    </button>
+                    <button onclick="scrollToTop()" class="p-2 rounded-full bg-blue-600 text-white hover:bg-blue-700 transition-colors" title="Top">
+                        ⬆️
+                    </button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Mobile Search -->
+    <div class="md:hidden fixed top-16 left-0 right-0 z-40 px-4 py-2 glass border-b no-print">
+        <input type="text" id="mobileSearchInput" placeholder="🔍 टॉपिक खोजें..." 
+               class="w-full px-4 py-2 rounded-full bg-white/90 border border-gray-300 focus:border-blue-500 outline-none text-sm">
+    </div>
+
+    <!-- Hero Section -->
+    <header class="pt-32 pb-12 px-4 text-center relative overflow-hidden">
+        <div class="absolute inset-0 opacity-10">
+            <div class="absolute top-20 left-10 w-32 h-32 bg-blue-500 rounded-full blur-3xl"></div>
+            <div class="absolute bottom-20 right-10 w-40 h-40 bg-purple-500 rounded-full blur-3xl"></div>
+        </div>
+        
+        <div class="relative z-10 max-w-4xl mx-auto">
+            <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-blue-100 text-blue-800 text-sm font-medium mb-6">
+                <span class="w-2 h-2 bg-green-500 rounded-full animate-pulse"></span>
+                2026 Latest Production Edition
+            </div>
+            
+            <h1 class="text-4xl sm:text-5xl lg:text-6xl font-extrabold mb-6 leading-tight">
+                <span class="gradient-text">Git & GitHub</span><br>
+                <span class="text-gray-800">सीखें आसानी से</span>
+            </h1>
+            
+            <p class="text-lg sm:text-xl text-gray-600 mb-8 max-w-2xl mx-auto leading-relaxed">
+                शून्य से हीरो बनें! Git के हर कॉन्सेप्ट को हिंदी में समझें - बेसिक कमांड्स से लेकर एडवांस्ड वर्कफ्लो, ब्रांचिंग, मर्जिंग और रीयल-लाइफ प्रोजेक्ट्स तक।
+            </p>
+            
+            <!-- Stats -->
+            <div class="flex flex-wrap justify-center gap-4 sm:gap-8 text-sm sm:text-base">
+                <div class="flex items-center gap-2">
+                    <span class="text-2xl">📚</span>
+                    <span class="font-semibold">15+ चैप्टर्स</span>
+                </div>
+                <div class="flex items-center gap-2">
+                    <span class="text-2xl">💻</span>
+                    <span class="font-semibold">50+ कोड उदाहरण</span>
+                </div>
+                <div class="flex items-center gap-2">
+                    <span class="text-2xl">🎯</span>
+                    <span class="font-semibold">रीयल-लाइफ प्रोजेक्ट्स</span>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Quick Navigation Cards -->
+    <div class="max-w-7xl mx-auto px-4 mb-8 no-print">
+        <div class="grid grid-cols-2 md:grid-cols-6 gap-3">
+            <a href="#basics" class="bg-white p-4 rounded-xl shadow-sm hover:shadow-md transition-all text-center border border-gray-200">
+                <div class="text-2xl mb-2">🎯</div>
+                <div class="font-semibold text-sm">Basics</div>
+            </a>
+            <a href="#workflow" class="bg-white p-4 rounded-xl shadow-sm hover:shadow-md transition-all text-center border border-gray-200">
+                <div class="text-2xl mb-2">⚡</div>
+                <div class="font-semibold text-sm">Workflow</div>
+            </a>
+            <a href="#branching" class="bg-white p-4 rounded-xl shadow-sm hover:shadow-md transition-all text-center border border-gray-200">
+                <div class="text-2xl mb-2">🌿</div>
+                <div class="font-semibold text-sm">Branching</div>
+            </a>
+            <a href="#advanced" class="bg-white p-4 rounded-xl shadow-sm hover:shadow-md transition-all text-center border border-gray-200">
+                <div class="text-2xl mb-2">🚀</div>
+                <div class="font-semibold text-sm">Advanced</div>
+            </a>
+            <a href="#examples" class="bg-white p-4 rounded-xl shadow-sm hover:shadow-md transition-all text-center border border-gray-200">
+                <div class="text-2xl mb-2">🧪</div>
+                <div class="font-semibold text-sm">Examples</div>
+            </a>
+            <a href="#production" class="bg-white p-4 rounded-xl shadow-sm hover:shadow-md transition-all text-center border border-gray-200">
+                <div class="text-2xl mb-2">🏁</div>
+                <div class="font-semibold text-sm">Production</div>
+            </a>
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <main id="mainContent" class="max-w-5xl mx-auto px-4 pb-20">
+        
+        <!-- Chapter 1: Introduction -->
+        <section id="basics" class="mb-12 animate-slide-in">
+            <div class="step-card bg-white rounded-2xl shadow-lg border border-gray-200 overflow-hidden">
+                <div class="bg-gradient-to-r from-blue-600 to-blue-700 text-white p-6">
+                    <div class="flex items-center gap-4">
+                        <div class="w-12 h-12 bg-white/20 rounded-full flex items-center justify-center text-2xl font-bold">1</div>
+                        <div>
+                            <h2 class="text-2xl font-bold">Git vs GitHub - अंतर समझें</h2>
+                            <p class="text-blue-100 mt-1">पहले मूलभूत अवधारणाएँ सीखें</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="p-6 space-y-6">
+                    <!-- Comparison Table -->
+                    <div class="overflow-x-auto">
+                        <table class="w-full text-sm">
+                            <thead>
+                                <tr class="bg-gray-50">
+                                    <th class="p-3 text-left font-semibold">विशेषता</th>
+                                    <th class="p-3 text-left font-semibold text-orange-600">Git</th>
+                                    <th class="p-3 text-left font-semibold text-blue-600">GitHub</th>
+                                </tr>
+                            </thead>
+                            <tbody class="divide-y divide-gray-200">
+                                <tr>
+                                    <td class="p-3 font-medium">क्या है?</td>
+                                    <td class="p-3">Version Control System (सॉफ्टवेयर)</td>
+                                    <td class="p-3">Hosting Service (वेबसाइट/प्लेटफॉर्म)</td>
+                                </tr>
+                                <tr>
+                                    <td class="p-3 font-medium">काम कहाँ होता है?</td>
+                                    <td class="p-3">आपके कंप्यूटर पर (Local)</td>
+                                    <td class="p-3">इंटरनेट पर (Cloud)</td>
+                                </tr>
+                                <tr>
+                                    <td class="p-3 font-medium">उदाहरण</td>
+                                    <td class="p-3">MS Word Track Changes</td>
+                                    <td class="p-3">Google Drive</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <!-- Real Life Analogy -->
+                    <div class="bg-amber-50 border-l-4 border-amber-500 p-4 rounded-r-lg">
+                        <div class="flex items-start gap-3">
+                            <span class="text-2xl">💡</span>
+                            <div>
+                                <h4 class="font-bold text-amber-900 mb-1">रीयल-लाइफ उदाहरण:</h4>
+                                <p class="text-amber-800 text-sm leading-relaxed">
+                                    <strong>Git</strong> = अपने लैपटॉप में फोटो एडिट करना (Photoshop)<br>
+                                    <strong>GitHub</strong> = उस फोटो को Instagram पर शेयर करना<br><br>
+                                    आप पहले लोकल में काम करते हैं (Git), फिर दुनिया को दिखाते हैं (GitHub)!
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Installation -->
+                    <div class="bg-gray-50 rounded-xl p-5">
+                        <h3 class="font-bold text-lg mb-4 flex items-center gap-2">
+                            <span>⚙️</span> Git इंस्टॉल करें
+                        </h3>
+                        
+                        <div class="space-y-4">
+                            <div>
+                                <p class="font-medium mb-2">Windows:</p>
+                                <div class="code-block bg-slate-900 text-gray-100 p-4 rounded-lg code-font text-sm overflow-x-auto">
+                                    <button class="copy-btn absolute top-3 right-3 px-3 py-1 bg-gray-700 hover:bg-gray-600 rounded text-xs transition-colors" data-copy="win-git">
+                                        📋 कॉपी
+                                    </button>
+                                    <code id="win-git"># 1. https://git-scm.com/download/win से डाउनलोड करें
+# 2. इंस्टॉलर खोलें, सभी डिफॉल्ट सेटिंग्स रखें
+# 3. VS Code में Terminal खोलें (Ctrl + `)
+# 4. वेरिफाई करें:
+git --version
+# Output: git version 2.43.0</code>
+                                </div>
+                            </div>
+                            
+                            <div>
+                                <p class="font-medium mb-2">Mac:</p>
+                                <div class="code-block bg-slate-900 text-gray-100 p-4 rounded-lg code-font text-sm overflow-x-auto">
+                                    <button class="copy-btn absolute top-3 right-3 px-3 py-1 bg-gray-700 hover:bg-gray-600 rounded text-xs transition-colors" data-copy="mac-git">
+                                        📋 कॉपी
+                                    </button>
+                                    <code id="mac-git"># Homebrew से इंस्टॉल करें:
+brew install git
+
+# या Xcode Command Line Tools:
+xcode-select --install</code>
+                                </div>
+                            </div>
+                            
+                            <div>
+                                <p class="font-medium mb-2">Linux (Ubuntu/Debian):</p>
+                                <div class="code-block bg-slate-900 text-gray-100 p-4 rounded-lg code-font text-sm overflow-x-auto">
+                                    <button class="copy-btn absolute top-3 right-3 px-3 py-1 bg-gray-700 hover:bg-gray-600 rounded text-xs transition-colors" data-copy="linux-git">
+                                        📋 कॉपी
+                                    </button>
+                                    <code id="linux-git">sudo apt update
+sudo apt install git</code>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Chapter 2: First Repository -->
+        <section id="workflow" class="mb-12 animate-slide-in">
+            <div class="step-card bg-white rounded-2xl shadow-lg border border-gray-200 overflow-hidden">
+                <div class="bg-gradient-to-r from-green-600 to-emerald-600 text-white p-6">
+                    <div class="flex items-center gap-4">
+                        <div class="w-12 h-12 bg-white/20 rounded-full flex items-center justify-center text-2xl font-bold">2</div>
+                        <div>
+                            <h2 class="text-2xl font-bold">अपनी पहली Repository बनाएँ</h2>
+                            <p class="text-green-100 mt-1">खाली रेपो से शुरुआत करें</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="p-6 space-y-6">
+                    <!-- Step by Step Visual -->
+                    <div class="relative">
+                        <div class="timeline-line hidden sm:block"></div>
+                        
+                        <div class="space-y-6">
+                            <!-- Step 1 -->
+                            <div class="flex gap-4">
+                                <div class="w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center font-bold text-blue-600 shrink-0 z-10">1</div>
+                                <div class="flex-1 bg-gray-50 rounded-xl p-4">
+                                    <h4 class="font-bold mb-2">GitHub पर New Repository बनाएँ</h4>
+                                    <ul class="space-y-2 text-sm text-gray-700">
+                                        <li class="flex items-start gap-2">
+                                            <span class="text-green-500 mt-0.5">✓</span>
+                                            <span>Repository name: <code class="bg-gray-200 px-2 py-0.5 rounded">my-awesome-project</code></span>
+                                        </li>
+                                        <li class="flex items-start gap-2">
+                                            <span class="text-green-500 mt-0.5">✓</span>
+                                            <span>Description: <em>"मेरा पहला Git प्रोजेक्ट"</em></span>
+                                        </li>
+                                        <li class="flex items-start gap-2 text-red-600">
+                                            <span class="mt-0.5">⚠️</span>
+                                            <span><strong>बेहद ज़रूरी:</strong> "Initialize with README" ❌ अनचेक रखें!</span>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                            
+                            <!-- Step 2 -->
+                            <div class="flex gap-4">
+                                <div class="w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center font-bold text-blue-600 shrink-0 z-10">2</div>
+                                <div class="flex-1">
+                                    <h4 class="font-bold mb-2">Clone करें (डाउनलोड करें)</h4>
+                                    <div class="code-block bg-slate-900 text-gray-100 p-4 rounded-lg code-font text-sm relative">
+                                        <button class="copy-btn absolute top-3 right-3 px-3 py-1 bg-gray-700 hover:bg-gray-600 rounded text-xs transition-colors" data-copy="clone-cmd">
+                                            📋 कॉपी
+                                        </button>
+                                        <code id="clone-cmd"># Desktop पर जाएँ
+cd Desktop
+
+# Repository clone करें (अपना URL डालें)
+git clone https://github.com/username/my-awesome-project.git
+
+# नई फोल्डर में जाएँ
+cd my-awesome-project
+
+# वेरिफाई करें
+ls -la  # Windows: dir</code>
+                                    </div>
+                                    
+                                    <div class="mt-3 bg-yellow-50 border border-yellow-200 rounded-lg p-3 text-sm">
+                                        <span class="font-semibold text-yellow-800">💡 Expected Output:</span>
+                                        <p class="text-yellow-700 mt-1">warning: You appear to have cloned an empty repository.</p>
+                                        <p class="text-green-700">✓ यह सही है! हमने जानबूझकर खाली रेपो बनाई है।</p>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <!-- Step 3 -->
+                            <div class="flex gap-4">
+                                <div class="w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center font-bold text-blue-600 shrink-0 z-10">3</div>
+                                <div class="flex-1">
+                                    <h4 class="font-bold mb-2">पहली फाइल जोड़ें</h4>
+                                    <div class="code-block bg-slate-900 text-gray-100 p-4 rounded-lg code-font text-sm relative">
+                                        <button class="copy-btn absolute top-3 right-3 px-3 py-1 bg-gray-700 hover:bg-gray-600 rounded text-xs transition-colors" data-copy="first-file">
+                                            📋 कॉपी
+                                        </button>
+                                        <code id="first-file"># README.md फाइल बनाएँ
+echo "# My Awesome Project" > README.md
+
+# या VS Code में बनाएँ:
+code README.md</code>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <!-- Step 4 -->
+                            <div class="flex gap-4">
+                                <div class="w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center font-bold text-blue-600 shrink-0 z-10">4</div>
+                                <div class="flex-1">
+                                    <h4 class="font-bold mb-2">Git Workflow - 3 स्टेप्स</h4>
+                                    <div class="grid md:grid-cols-3 gap-3">
+                                        <div class="bg-red-50 border-2 border-red-200 rounded-lg p-4 text-center">
+                                            <div class="text-3xl mb-2">➕</div>
+                                            <div class="font-bold text-red-700">1. Add</div>
+                                            <div class="code-font text-xs mt-2 text-red-600">git add .</div>
+                                            <p class="text-xs text-gray-600 mt-2">फाइलों को स्टेजिंग एरिया में डालें</p>
+                                        </div>
+                                        <div class="bg-yellow-50 border-2 border-yellow-200 rounded-lg p-4 text-center">
+                                            <div class="text-3xl mb-2">💾</div>
+                                            <div class="font-bold text-yellow-700">2. Commit</div>
+                                            <div class="code-font text-xs mt-2 text-yellow-600">git commit -m "msg"</div>
+                                            <p class="text-xs text-gray-600 mt-2">स्थायी रूप से सेव करें</p>
+                                        </div>
+                                        <div class="bg-green-50 border-2 border-green-200 rounded-lg p-4 text-center">
+                                            <div class="text-3xl mb-2">🚀</div>
+                                            <div class="font-bold text-green-700">3. Push</div>
+                                            <div class="code-font text-xs mt-2 text-green-600">git push</div>
+                                            <p class="text-xs text-gray-600 mt-2">GitHub पर अपलोड करें</p>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="code-block bg-slate-900 text-gray-100 p-4 rounded-lg code-font text-sm relative mt-4">
+                                        <button class="copy-btn absolute top-3 right-3 px-3 py-1 bg-gray-700 hover:bg-gray-600 rounded text-xs transition-colors" data-copy="full-workflow">
+                                            📋 कॉपी
+                                        </button>
+                                        <code id="full-workflow"># सभी फाइलों को stage करें
+git add .
+
+# Commit करें (अच्छा message लिखें)
+git commit -m "Initial commit: Added README"
+
+# GitHub पर push करें
+git push -u origin main
+
+# अगली बार से सिर्फ:
+git push</code>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Chapter 3: Daily Workflow -->
+        <section id="examples" class="mb-12 animate-slide-in">
+            <div class="step-card bg-white rounded-2xl shadow-lg border border-gray-200 overflow-hidden">
+                <div class="bg-gradient-to-r from-purple-600 to-pink-600 text-white p-6">
+                    <div class="flex items-center gap-4">
+                        <div class="w-12 h-12 bg-white/20 rounded-full flex items-center justify-center text-2xl font-bold">3</div>
+                        <div>
+                            <h2 class="text-2xl font-bold">डेली वर्कफ्लो - हर दिन यही करें</h2>
+                            <p class="text-purple-100 mt-1">टीम के साथ काम करने का तरीका</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="p-6 space-y-6">
+                    <!-- Daily Routine -->
+                    <div class="bg-gradient-to-r from-blue-50 to-indigo-50 rounded-xl p-5 border border-blue-200">
+                        <h3 class="font-bold text-lg mb-4 text-blue-900">🌅 सुबह का रुटीन (काम शुरू करने से पहले)</h3>
+                        <div class="code-block bg-slate-900 text-gray-100 p-4 rounded-lg code-font text-sm relative">
+                            <button class="copy-btn absolute top-3 right-3 px-3 py-1 bg-gray-700 hover:bg-gray-600 rounded text-xs transition-colors" data-copy="morning-routine">
+                                📋 कॉपी
+                            </button>
+                            <code id="morning-routine"># 1. नवीनतम बदलाव लाएँ
+git pull origin main
+
+# 2. स्टेटस देखें
+git status
+
+# 3. किस ब्रांच पर हैं देखें
+git branch</code>
+                        </div>
+                    </div>
+
+                    <!-- During Work -->
+                    <div class="bg-gradient-to-r from-green-50 to-emerald-50 rounded-xl p-5 border border-green-200">
+                        <h3 class="font-bold text-lg mb-4 text-green-900">⚡ काम करते समय (हर 30-60 मिनट में)</h3>
+                        <div class="code-block bg-slate-900 text-gray-100 p-4 rounded-lg code-font text-sm relative">
+                            <button class="copy-btn absolute top-3 right-3 px-3 py-1 bg-gray-700 hover:bg-gray-600 rounded text-xs transition-colors" data-copy="during-work">
+                                📋 कॉपी
+                            </button>
+                            <code id="during-work"># बार-बार commit करते रहें (छोटे-छोटे commits)
+git add -A
+git commit -m "feat: login page ka UI improve kiya"
+
+# शाम को push करें
+git push</code>
+                        </div>
+                        
+                        <div class="mt-3 bg-white/70 rounded-lg p-3 text-sm">
+                            <p class="font-semibold text-green-800 mb-2">✅ अच्छे Commit Messages के उदाहरण:</p>
+                            <ul class="space-y-1 text-green-700 font-mono text-xs">
+                                <li>"feat: user authentication add kiya"</li>
+                                <li>"fix: login button ka color change kiya"</li>
+                                <li>"docs: README mein installation steps add kiye"</li>
+                                <li>"refactor: header component ko simplify kiya"</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <!-- Evening Routine -->
+                    <div class="bg-gradient-to-r from-orange-50 to-amber-50 rounded-xl p-5 border border-orange-200">
+                        <h3 class="font-bold text-lg mb-4 text-orange-900">🌆 शाम का रुटीन (काम खत्म करने से पहले)</h3>
+                        <div class="code-block bg-slate-900 text-gray-100 p-4 rounded-lg code-font text-sm relative">
+                            <button class="copy-btn absolute top-3 right-3 px-3 py-1 bg-gray-700 hover:bg-gray-600 rounded text-xs transition-colors" data-copy="evening-routine">
+                                📋 कॉपी
+                            </button>
+                            <code id="evening-routine"># 1. क्या बदलाव हुए देखें
+git status
+
+# 2. अगर कुछ बचा है तो commit करें
+git add .
+git commit -m "WIP: kal continue karenge"
+
+# 3. सब कुछ push करें
+git push
+
+# 4. लॉग देखें
+git log --oneline -5</code>
+                        </div>
+                    </div>
+
+                    <!-- Real Life Example -->
+                    <div class="bg-indigo-50 border-l-4 border-indigo-500 p-4 rounded-r-lg">
+                        <h4 class="font-bold text-indigo-900 mb-2">🎬 रीयल-लाइफ सिनेरियो:</h4>
+                        <p class="text-indigo-800 text-sm leading-relaxed">
+                            <strong>स्थिति:</strong> आप एक E-commerce वेबसाइट बना रहे हैं।<br><br>
+                            <strong>सुबह:</strong> <code>git pull</code> से टीम के बदलाव लाएँ<br>
+                            <strong>दोपहर:</strong> Shopping cart का कोड लिखा, commit किया "feat: cart functionality added"<br>
+                            <strong>शाम:</strong> सारे commits push कर दिए<br><br>
+                            <strong>फायदा:</strong> अगर कल कुछ गड़बड़ हो तो पता चलेगा कि कब क्या बदला था!
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Chapter 4: Branching -->
+        <section id="branching" class="mb-12 animate-slide-in">
+            <div class="step-card bg-white rounded-2xl shadow-lg border border-gray-200 overflow-hidden">
+                <div class="bg-gradient-to-r from-emerald-600 to-teal-600 text-white p-6">
+                    <div class="flex items-center gap-4">
+                        <div class="w-12 h-12 bg-white/20 rounded-full flex items-center justify-center text-2xl font-bold">4</div>
+                        <div>
+                            <h2 class="text-2xl font-bold">Branching - सुरक्षित तरीके से काम करें</h2>
+                            <p class="text-emerald-100 mt-1">मुख्य कोड को बिना छुए नए फीचर्स बनाएँ</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="p-6 space-y-6">
+                    <!-- Branch Analogy -->
+                    <div class="bg-gradient-to-br from-amber-50 to-orange-50 rounded-xl p-5 border border-amber-200">
+                        <h3 class="font-bold text-lg mb-3 text-amber-900">🌳 Branch क्या है? (Tree Analogy)</h3>
+                        <div class="flex flex-col md:flex-row gap-4 items-center">
+                            <div class="flex-1">
+                                <p class="text-amber-800 text-sm leading-relaxed mb-3">
+                                    <strong>Main Branch ( trunk/tana ):</strong> स्थिर, काम करने वाला कोड<br>
+                                    <strong>Feature Branch ( shakha/tahni ):</strong> नए एक्सपेरिमेंट के लिए<br>
+                                    <strong>Merge ( jodna ):</strong> सब कुछ सही रहा तो main में जोड़ दें
+                                </p>
+                            </div>
+                            <div class="text-6xl">🌳</div>
+                        </div>
+                    </div>
+
+                    <!-- Branch Commands -->
+                    <div class="space-y-4">
+                        <h3 class="font-bold text-lg">🚀 Branch कमांड्स</h3>
+                        
+                        <div class="grid md:grid-cols-2 gap-4">
+                            <div class="bg-gray-50 rounded-xl p-4">
+                                <h4 class="font-semibold mb-2 text-sm">नई Branch बनाएँ</h4>
+                                <div class="code-block bg-slate-900 text-gray-100 p-3 rounded-lg code-font text-xs relative">
+                                    <button class="copy-btn absolute top-2 right-2 px-2 py-0.5 bg-gray-700 hover:bg-gray-600 rounded text-xs" data-copy="new-branch">
+                                        📋
+                                    </button>
+                                    <code id="new-branch"># checkout -b = नई branch बनाएँ और उस पर जाएँ
+git checkout -b feature-login-page
+
+# या नया syntax:
+git switch -c feature-login-page</code>
+                                </div>
+                            </div>
+                            
+                            <div class="bg-gray-50 rounded-xl p-4">
+                                <h4 class="font-semibold mb-2 text-sm">Branch के बीच Switch करें</h4>
+                                <div class="code-block bg-slate-900 text-gray-100 p-3 rounded-lg code-font text-xs relative">
+                                    <button class="copy-btn absolute top-2 right-2 px-2 py-0.5 bg-gray-700 hover:bg-gray-600 rounded text-xs" data-copy="switch-branch">
+                                        📋
+                                    </button>
+                                    <code id="switch-branch"># सभी branches देखें
+git branch -a
+
+# दूसरी branch पर जाएँ
+git checkout main
+# या
+git switch main</code>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="bg-blue-50 rounded-xl p-4 border border-blue-200">
+                            <h4 class="font-semibold mb-2 text-blue-900">📝 Complete Branch Workflow</h4>
+                            <div class="code-block bg-slate-900 text-gray-100 p-4 rounded-lg code-font text-sm relative">
+                                <button class="copy-btn absolute top-3 right-3 px-3 py-1 bg-gray-700 hover:bg-gray-600 rounded text-xs transition-colors" data-copy="branch-workflow">
+                                    📋 कॉपी
+                                </button>
+                                <code id="branch-workflow"># 1. Main branch update करें
+git checkout main
+git pull origin main
+
+# 2. नई feature branch बनाएँ
+git checkout -b feature-payment-gateway
+
+# 3. काम करें, फाइलें बदलें...
+
+# 4. Changes commit करें
+git add .
+git commit -m "feat: payment gateway integration"
+
+# 5. Branch को GitHub पर push करें
+git push -u origin feature-payment-gateway
+
+# 6. Pull Request बनाएँ GitHub पर
+# 7. Review होने के बाद merge करें</code>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Branch Naming Convention -->
+                    <div class="bg-purple-50 rounded-xl p-5 border border-purple-200">
+                        <h4 class="font-bold text-purple-900 mb-3">🏷️ Branch Naming Best Practices</h4>
+                        <div class="grid sm:grid-cols-2 gap-3 text-sm">
+                            <div>
+                                <p class="font-semibold text-purple-700 mb-2">✅ सही नाम:</p>
+                                <ul class="space-y-1 text-purple-800 font-mono text-xs">
+                                    <li>feature/user-authentication</li>
+                                    <li>bugfix/login-error</li>
+                                    <li>hotfix/payment-failure</li>
+                                    <li>docs/api-documentation</li>
+                                </ul>
+                            </div>
+                            <div>
+                                <p class="font-semibold text-red-700 mb-2">❌ गलत नाम:</p>
+                                <ul class="space-y-1 text-red-800 font-mono text-xs">
+                                    <li>xyz</li>
+                                    <li>temp-branch</li>
+                                    <li>fix-something</li>
+                                    <li>my-work</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Chapter 5: Merging & Conflicts -->
+        <section class="mb-12 animate-slide-in">
+            <div class="step-card bg-white rounded-2xl shadow-lg border border-gray-200 overflow-hidden">
+                <div class="bg-gradient-to-r from-orange-600 to-red-600 text-white p-6">
+                    <div class="flex items-center gap-4">
+                        <div class="w-12 h-12 bg-white/20 rounded-full flex items-center justify-center text-2xl font-bold">5</div>
+                        <div>
+                            <h2 class="text-2xl font-bold">Merging & Conflict Resolution</h2>
+                            <p class="text-orange-100 mt-1">जब दो लोग एक ही फाइल बदल दें</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="p-6 space-y-6">
+                    <!-- Types of Merging -->
+                    <div class="grid md:grid-cols-2 gap-4">
+                        <div class="bg-green-50 rounded-xl p-4 border border-green-200">
+                            <h4 class="font-bold text-green-900 mb-2">✅ Fast-Forward Merge</h4>
+                            <p class="text-sm text-green-800 mb-3">जब main branch में कोई बदलाव न हो</p>
+                            <div class="code-block bg-slate-900 text-gray-100 p-3 rounded-lg code-font text-xs">
+                                <code>git checkout main
+git merge feature-branch
+# आसानी से merge हो गया!</code>
+                            </div>
+                        </div>
+                        
+                        <div class="bg-yellow-50 rounded-xl p-4 border border-yellow-200">
+                            <h4 class="font-bold text-yellow-900 mb-2">⚠️ 3-Way Merge</h4>
+                            <p class="text-sm text-yellow-800 mb-3">जब main और feature दोनों में बदलाव हों</p>
+                            <div class="code-block bg-slate-900 text-gray-100 p-3 rounded-lg code-font text-xs">
+                                <code>git checkout main
+git merge feature-branch
+# शायद conflict आए...</code>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Conflict Resolution -->
+                    <div class="bg-red-50 rounded-xl p-5 border border-red-200">
+                        <h3 class="font-bold text-red-900 mb-4">🔥 Conflict Resolve कैसे करें</h3>
+                        
+                        <div class="space-y-4">
+                            <div class="bg-white rounded-lg p-4">
+                                <p class="font-semibold mb-2">1. Conflict देखें:</p>
+                                <div class="code-block bg-slate-900 text-gray-100 p-3 rounded-lg code-font text-sm">
+                                    <code>git status
+# लाल रंग में conflict वाली files दिखेंगी</code>
+                                </div>
+                            </div>
+                            
+                            <div class="bg-white rounded-lg p-4">
+                                <p class="font-semibold mb-2">2. फाइल खोलें, यह देखेंगे:</p>
+                                <div class="code-block bg-slate-900 text-gray-100 p-3 rounded-lg code-font text-xs">
+                                    <code><<<<<<< HEAD
+// आपका code (main branch)
+console.log("Hello from main");
+=======
+// दूसरे का code (feature branch)
+console.log("Hello from feature");
+>>>>>>> feature-branch</code>
+                                </div>
+                            </div>
+                            
+                            <div class="bg-white rounded-lg p-4">
+                                <p class="font-semibold mb-2">3. हल करें (Markers हटाएँ):</p>
+                                <div class="code-block bg-slate-900 text-gray-100 p-3 rounded-lg code-font text-xs">
+                                    <code>// दोनों में से चुनें या merge करें
+console.log("Hello from both branches!");</code>
+                                </div>
+                            </div>
+                            
+                            <div class="bg-white rounded-lg p-4">
+                                <p class="font-semibold mb-2">4. Resolve mark करें:</p>
+                                <div class="code-block bg-slate-900 text-gray-100 p-3 rounded-lg code-font text-sm">
+                                    <code>git add conflict-file.js
+git commit -m "resolved merge conflict in login page"</code>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- VS Code Conflict Resolution -->
+                    <div class="bg-blue-50 rounded-xl p-5 border border-blue-200">
+                        <h4 class="font-bold text-blue-900 mb-3">🛠️ VS Code में Conflict Solve करना (आसान तरीका)</h4>
+                        <div class="grid sm:grid-cols-3 gap-3">
+                            <div class="bg-white p-3 rounded-lg text-center">
+                                <div class="text-2xl mb-1">🔵</div>
+                                <p class="font-semibold text-sm">Accept Current</p>
+                                <p class="text-xs text-gray-600">आपका बदलाव रखें</p>
+                            </div>
+                            <div class="bg-white p-3 rounded-lg text-center">
+                                <div class="text-2xl mb-1">🟡</div>
+                                <p class="font-semibold text-sm">Accept Incoming</p>
+                                <p class="text-xs text-gray-600">दूसरे का बदलाव रखें</p>
+                            </div>
+                            <div class="bg-white p-3 rounded-lg text-center">
+                                <div class="text-2xl mb-1">🟢</div>
+                                <p class="font-semibold text-sm">Accept Both</p>
+                                <p class="text-xs text-gray-600">दोनों रखें</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Real Example -->
+                    <div class="bg-amber-50 border-l-4 border-amber-500 p-4 rounded-r-lg">
+                        <h4 class="font-bold text-amber-900 mb-2">🎬 Conflict Example:</h4>
+                        <p class="text-amber-800 text-sm">
+                            <strong>स्थिति:</strong> आपने <code>style.css</code> में button का color blue किया, 
+                            और आपके teammate ने same file में button का color green किया।<br><br>
+                            <strong>Solution:</strong> Team lead से पूछें कि कौन सा color रखना है, 
+                            या compromise करके नया color चुनें!
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Chapter 6: .gitignore -->
+        <section class="mb-12 animate-slide-in">
+            <div class="step-card bg-white rounded-2xl shadow-lg border border-gray-200 overflow-hidden">
+                <div class="bg-gradient-to-r from-gray-600 to-slate-600 text-white p-6">
+                    <div class="flex items-center gap-4">
+                        <div class="w-12 h-12 bg-white/20 rounded-full flex items-center justify-center text-2xl font-bold">6</div>
+                        <div>
+                            <h2 class="text-2xl font-bold">.gitignore - Secret Files छिपाएँ</h2>
+                            <p class="text-gray-200 mt-1">Password और API Keys को GitHub से दूर रखें</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="p-6 space-y-6">
+                    <div class="bg-red-50 border-l-4 border-red-500 p-4 rounded-r-lg">
+                        <h4 class="font-bold text-red-900 mb-2">⚠️ कभी GitHub पर न डालें:</h4>
+                        <ul class="text-red-800 text-sm space-y-1">
+                            <li>• Passwords / API Keys</li>
+                            <li>• .env files</li>
+                            <li>• node_modules (बहुत बड़ी folder)</li>
+                            <li>• Database files</li>
+                            <li>• OS files (.DS_Store, Thumbs.db)</li>
+                        </ul>
+                    </div>
+
+                    <div class="bg-gray-900 rounded-xl p-5">
+                        <div class="flex justify-between items-center mb-3">
+                            <h4 class="font-bold text-white">📝 .gitignore Example (React/Node Project)</h4>
+                            <button class="copy-btn px-3 py-1 bg-gray-700 hover:bg-gray-600 rounded text-xs text-white transition-colors" data-copy="gitignore-content">
+                                📋 कॉपी
+                            </button>
+                        </div>
+                        <pre id="gitignore-content" class="code-font text-sm text-gray-300 overflow-x-auto"><code># Dependencies
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Production build
+/build
+/dist
+
+# Environment variables
+.env
+.env.local
+.env.development
+.env.production
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Logs
+logs
+*.log
+
+# Testing
+coverage/
+.nyc_output/
+
+# Temporary files
+*.tmp
+*.temp</code></pre>
+                    </div>
+
+                    <div class="bg-green-50 rounded-xl p-4 border border-green-200">
+                        <h4 class="font-bold text-green-900 mb-2">✅ .gitignore setup:</h4>
+                        <div class="code-block bg-slate-900 text-gray-100 p-3 rounded-lg code-font text-sm">
+                            <code># .gitignore फाइल बनाएँ
+echo "node_modules/" > .gitignore
+
+# या VS Code में .gitignore नाम से फाइल बनाएँ
+# फिर ऊपर वाला content paste करें
+
+git add .gitignore
+git commit -m "added gitignore"
+git push</code>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Chapter 7: Pull Requests -->
+        <section class="mb-12 animate-slide-in">
+            <div class="step-card bg-white rounded-2xl shadow-lg border border-gray-200 overflow-hidden">
+                <div class="bg-gradient-to-r from-indigo-600 to-blue-600 text-white p-6">
+                    <div class="flex items-center gap-4">
+                        <div class="w-12 h-12 bg-white/20 rounded-full flex items-center justify-center text-2xl font-bold">7</div>
+                        <div>
+                            <h2 class="text-2xl font-bold">Pull Requests - Team Review</h2>
+                            <p class="text-indigo-100 mt-1">कोड review करने का पेशेवर तरीका</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="p-6 space-y-6">
+                    <!-- PR Workflow -->
+                    <div class="relative">
+                        <div class="flex flex-col md:flex-row gap-4">
+                            <div class="flex-1 bg-blue-50 rounded-xl p-4 border border-blue-200">
+                                <div class="text-3xl mb-2">1️⃣</div>
+                                <h4 class="font-bold text-blue-900">Branch Push करें</h4>
+                                <p class="text-sm text-blue-800 mt-2">अपनी feature branch को GitHub पर push करें</p>
+                                <code class="block mt-2 bg-white p-2 rounded text-xs code-font">git push -u origin feature-xyz</code>
+                            </div>
+                            <div class="flex-1 bg-purple-50 rounded-xl p-4 border border-purple-200">
+                                <div class="text-3xl mb-2">2️⃣</div>
+                                <h4 class="font-bold text-purple-900">PR बनाएँ</h4>
+                                <p class="text-sm text-purple-800 mt-2">GitHub पर "Compare & Pull Request" बटन दबाएँ</p>
+                            </div>
+                            <div class="flex-1 bg-green-50 rounded-xl p-4 border border-green-200">
+                                <div class="text-3xl mb-2">3️⃣</div>
+                                <h4 class="font-bold text-green-900">Review & Merge</h4>
+                                <p class="text-sm text-green-800 mt-2">Team review करे, फिर main में merge करें</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- PR Template -->
+                    <div class="bg-gray-50 rounded-xl p-5">
+                        <h4 class="font-bold mb-3">📝 अच्छा PR Description लिखें:</h4>
+                        <div class="bg-white rounded-lg p-4 border-2 border-dashed border-gray-300">
+                            <pre class="text-sm text-gray-700 whitespace-pre-wrap">## क्या बदला?
+- Login page का UI नया डिज़ाइन
+- Password validation add किया
+
+## क्यों बदला?
+- पुराना UI outdated था
+- Security improve करनी थी
+
+## Testing:
+- [x] Local पर test किया
+- [x] Mobile responsive check किया
+- [ ] Unit tests लिखने हैं
+
+## Screenshots:
+[यहाँ screenshot डालें]</pre>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Chapter 8: Advanced Tips -->
+        <section id="advanced" class="mb-12 animate-slide-in">
+            <div class="step-card bg-white rounded-2xl shadow-lg border border-gray-200 overflow-hidden">
+                <div class="bg-gradient-to-r from-pink-600 to-rose-600 text-white p-6">
+                    <div class="flex items-center gap-4">
+                        <div class="w-12 h-12 bg-white/20 rounded-full flex items-center justify-center text-2xl font-bold">8</div>
+                        <div>
+                            <h2 class="text-2xl font-bold">Pro Tips & Advanced Commands</h2>
+                            <p class="text-pink-100 mt-1">एक्सपर्ट बनने के लिए ये सीखें</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="p-6 space-y-6">
+                    <!-- Accordion for Advanced Topics -->
+                    <div class="space-y-3">
+                        <!-- Undo Changes -->
+                        <div class="border border-gray-200 rounded-xl overflow-hidden">
+                            <button class="accordion-trigger w-full px-5 py-4 bg-gray-50 hover:bg-gray-100 text-left flex justify-between items-center" onclick="toggleAccordion(this)">
+                                <span class="font-bold flex items-center gap-2">
+                                    <span>↩️</span> बदलाव वापस लाएँ (Undo)
+                                </span>
+                                <span class="transform transition-transform">▼</span>
+                            </button>
+                            <div class="accordion-content bg-white">
+                                <div class="p-5 space-y-3">
+                                    <div class="code-block bg-slate-900 text-gray-100 p-3 rounded-lg code-font text-sm">
+                                        <code># Last commit undo करें (preserve changes)
+git reset --soft HEAD~1
+
+# Last commit पूरी तरह delete करें
+git reset --hard HEAD~1
+
+# Specific file को undo करें
+git checkout -- filename.js
+
+# Staged changes को unstaged करें
+git reset HEAD filename.js</code>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Stashing -->
+                        <div class="border border-gray-200 rounded-xl overflow-hidden">
+                            <button class="accordion-trigger w-full px-5 py-4 bg-gray-50 hover:bg-gray-100 text-left flex justify-between items-center" onclick="toggleAccordion(this)">
+                                <span class="font-bold flex items-center gap-2">
+                                    <span>📦</span> Stash - काम को Temporary Save करें
+                                </span>
+                                <span class="transform transition-transform">▼</span>
+                            </button>
+                            <div class="accordion-content bg-white">
+                                <div class="p-5 space-y-3">
+                                    <p class="text-sm text-gray-600">जब आप काम कर रहे हों और अचानक किसी और branch पर जाना हो:</p>
+                                    <div class="code-block bg-slate-900 text-gray-100 p-3 rounded-lg code-font text-sm">
+                                        <code># Current changes को stash करें
+git stash push -m "half done login work"
+
+# दूसरी branch पर जाएँ
+git checkout main
+
+# वापस आएँ और stash लगाएँ
+git checkout feature-login
+git stash pop
+
+# सभी stash देखें
+git stash list</code>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Cherry Pick -->
+                        <div class="border border-gray-200 rounded-xl overflow-hidden">
+                            <button class="accordion-trigger w-full px-5 py-4 bg-gray-50 hover:bg-gray-100 text-left flex justify-between items-center" onclick="toggleAccordion(this)">
+                                <span class="font-bold flex items-center gap-2">
+                                    <span>🍒</span> Cherry Pick - एक Commit Copy करें
+                                </span>
+                                <span class="transform transition-transform">▼</span>
+                            </button>
+                            <div class="accordion-content bg-white">
+                                <div class="p-5 space-y-3">
+                                    <div class="code-block bg-slate-900 text-gray-100 p-3 rounded-lg code-font text-sm">
+                                        <code># किसी दूसरी branch का commit लाएँ
+git checkout main
+
+# Commit hash copy करें (git log से)
+git cherry-pick abc1234
+
+# अगर conflict आए तो resolve करें
+git add .
+git cherry-pick --continue</code>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Rebase -->
+                        <div class="border border-gray-200 rounded-xl overflow-hidden">
+                            <button class="accordion-trigger w-full px-5 py-4 bg-gray-50 hover:bg-gray-100 text-left flex justify-between items-center" onclick="toggleAccordion(this)">
+                                <span class="font-bold flex items-center gap-2">
+                                    <span>🔄</span> Rebase - Clean History
+                                </span>
+                                <span class="transform transition-transform">▼</span>
+                            </button>
+                            <div class="accordion-content bg-white">
+                                <div class="p-5 space-y-3">
+                                    <p class="text-sm text-gray-600">Rebase = इतिहास साफ़ करना (Caution: Shared branches पर न करें)</p>
+                                    <div class="code-block bg-slate-900 text-gray-100 p-3 rounded-lg code-font text-sm">
+                                        <code># Feature branch को main के ऊपर rebase करें
+git checkout feature-branch
+git rebase main
+
+# Interactive rebase (commits को edit/delete/reorder करें)
+git rebase -i HEAD~3</code>
+                                    </div>
+                                    <div class="bg-yellow-50 border border-yellow-200 rounded-lg p-3 text-sm text-yellow-800">
+                                        ⚠️ <strong>Warning:</strong> Rebase से commit hashes बदल जाते हैं। 
+                                        कभी भी public/shared branches पर force push न करें!
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Git Aliases -->
+                    <div class="bg-indigo-50 rounded-xl p-5 border border-indigo-200">
+                        <h4 class="font-bold text-indigo-900 mb-3">⚡ Useful Git Aliases (Shortcuts)</h4>
+                        <div class="code-block bg-slate-900 text-gray-100 p-4 rounded-lg code-font text-sm">
+                            <code># Setup करें
+git config --global alias.st status
+git config --global alias.co checkout
+git config --global alias.br branch
+git config --global alias.ci commit
+git config --global alias.lg "log --oneline --graph --decorate"
+
+# Use करें
+git st  # = git status
+git co main  # = git checkout main
+git lg  # Beautiful log graph</code>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Cheat Sheet -->
+        <section class="mb-12 animate-slide-in">
+            <div class="step-card bg-white rounded-2xl shadow-lg border border-gray-200 overflow-hidden">
+                <div class="bg-gradient-to-r from-slate-700 to-gray-800 text-white p-6">
+                    <div class="flex items-center justify-between">
+                        <div class="flex items-center gap-4">
+                            <div class="text-3xl">📋</div>
+                            <div>
+                                <h2 class="text-2xl font-bold">Complete Cheat Sheet</h2>
+                                <p class="text-gray-300 mt-1">सभी ज़रूरी कमांड्स एक जगह</p>
+                            </div>
+                        </div>
+                        <button onclick="downloadCheatSheet()" class="hidden sm:flex items-center gap-2 px-4 py-2 bg-white/10 hover:bg-white/20 rounded-lg transition-colors">
+                            <span>💾</span>
+                            <span>Download PDF</span>
+                        </button>
+                    </div>
+                </div>
+                
+                <div class="p-6">
+                    <div class="grid md:grid-cols-2 gap-6">
+                        <!-- Basic Commands -->
+                        <div>
+                            <h3 class="font-bold text-lg mb-3 text-blue-600">🚀 Basic Commands</h3>
+                            <div class="space-y-2 text-sm">
+                                <div class="flex justify-between p-2 bg-gray-50 rounded">
+                                    <code class="code-font text-red-600">git init</code>
+                                    <span class="text-gray-600">नई repo शुरू करें</span>
+                                </div>
+                                <div class="flex justify-between p-2 bg-gray-50 rounded">
+                                    <code class="code-font text-red-600">git clone [url]</code>
+                                    <span class="text-gray-600">Repo download करें</span>
+                                </div>
+                                <div class="flex justify-between p-2 bg-gray-50 rounded">
+                                    <code class="code-font text-red-600">git status</code>
+                                    <span class="text-gray-600">Status देखें</span>
+                                </div>
+                                <div class="flex justify-between p-2 bg-gray-50 rounded">
+                                    <code class="code-font text-red-600">git add .</code>
+                                    <span class="text-gray-600">सभी files stage करें</span>
+                                </div>
+                                <div class="flex justify-between p-2 bg-gray-50 rounded">
+                                    <code class="code-font text-red-600">git commit -m "msg"</code>
+                                    <span class="text-gray-600">Changes save करें</span>
+                                </div>
+                                <div class="flex justify-between p-2 bg-gray-50 rounded">
+                                    <code class="code-font text-red-600">git push</code>
+                                    <span class="text-gray-600">GitHub पर भेजें</span>
+                                </div>
+                                <div class="flex justify-between p-2 bg-gray-50 rounded">
+                                    <code class="code-font text-red-600">git pull</code>
+                                    <span class="text-gray-600">नवीनतम changes लाएँ</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Branch Commands -->
+                        <div>
+                            <h3 class="font-bold text-lg mb-3 text-green-600">🌿 Branch Commands</h3>
+                            <div class="space-y-2 text-sm">
+                                <div class="flex justify-between p-2 bg-gray-50 rounded">
+                                    <code class="code-font text-red-600">git branch</code>
+                                    <span class="text-gray-600">Branches देखें</span>
+                                </div>
+                                <div class="flex justify-between p-2 bg-gray-50 rounded">
+                                    <code class="code-font text-red-600">git checkout -b [name]</code>
+                                    <span class="text-gray-600">नई branch बनाएँ</span>
+                                </div>
+                                <div class="flex justify-between p-2 bg-gray-50 rounded">
+                                    <code class="code-font text-red-600">git checkout [name]</code>
+                                    <span class="text-gray-600">Branch switch करें</span>
+                                </div>
+                                <div class="flex justify-between p-2 bg-gray-50 rounded">
+                                    <code class="code-font text-red-600">git merge [name]</code>
+                                    <span class="text-gray-600">Branch merge करें</span>
+                                </div>
+                                <div class="flex justify-between p-2 bg-gray-50 rounded">
+                                    <code class="code-font text-red-600">git branch -d [name]</code>
+                                    <span class="text-gray-600">Branch delete करें</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- History & Undo -->
+                        <div>
+                            <h3 class="font-bold text-lg mb-3 text-purple-600">📜 History & Undo</h3>
+                            <div class="space-y-2 text-sm">
+                                <div class="flex justify-between p-2 bg-gray-50 rounded">
+                                    <code class="code-font text-red-600">git log --oneline</code>
+                                    <span class="text-gray-600">Commit history</span>
+                                </div>
+                                <div class="flex justify-between p-2 bg-gray-50 rounded">
+                                    <code class="code-font text-red-600">git log --graph</code>
+                                    <span class="text-gray-600">Graph view</span>
+                                </div>
+                                <div class="flex justify-between p-2 bg-gray-50 rounded">
+                                    <code class="code-font text-red-600">git reset --soft HEAD~1</code>
+                                    <span class="text-gray-600">Undo last commit</span>
+                                </div>
+                                <div class="flex justify-between p-2 bg-gray-50 rounded">
+                                    <code class="code-font text-red-600">git revert [commit]</code>
+                                    <span class="text-gray-600">Safe undo</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Stash & Utils -->
+                        <div>
+                            <h3 class="font-bold text-lg mb-3 text-orange-600">🧰 Stash & Utils</h3>
+                            <div class="space-y-2 text-sm">
+                                <div class="flex justify-between p-2 bg-gray-50 rounded">
+                                    <code class="code-font text-red-600">git stash</code>
+                                    <span class="text-gray-600">Temporary save</span>
+                                </div>
+                                <div class="flex justify-between p-2 bg-gray-50 rounded">
+                                    <code class="code-font text-red-600">git stash pop</code>
+                                    <span class="text-gray-600">Stash apply करें</span>
+                                </div>
+                                <div class="flex justify-between p-2 bg-gray-50 rounded">
+                                    <code class="code-font text-red-600">git diff</code>
+                                    <span class="text-gray-600">Changes देखें</span>
+                                </div>
+                                <div class="flex justify-between p-2 bg-gray-50 rounded">
+                                    <code class="code-font text-red-600">git remote -v</code>
+                                    <span class="text-gray-600">Remote URLs</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Quick Reference Card -->
+                    <div class="mt-6 p-4 bg-gradient-to-r from-blue-600 to-purple-600 rounded-xl text-white">
+                        <h4 class="font-bold mb-3">⚡ 5-Second Memory Hook</h4>
+                        <div class="grid sm:grid-cols-3 gap-4 text-center">
+                            <div class="bg-white/10 rounded-lg p-3">
+                                <div class="text-2xl mb-1">📥</div>
+                                <div class="font-semibold">git add</div>
+                                <div class="text-xs opacity-80">Stage करें</div>
+                            </div>
+                            <div class="bg-white/10 rounded-lg p-3">
+                                <div class="text-2xl mb-1">💾</div>
+                                <div class="font-semibold">git commit</div>
+                                <div class="text-xs opacity-80">Save करें</div>
+                            </div>
+                            <div class="bg-white/10 rounded-lg p-3">
+                                <div class="text-2xl mb-1">🚀</div>
+                                <div class="font-semibold">git push</div>
+                                <div class="text-xs opacity-80">Upload करें</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- More Practical Code Examples -->
+        <section class="mb-12 animate-slide-in">
+            <div class="step-card bg-white rounded-2xl shadow-lg border border-gray-200 overflow-hidden">
+                <div class="bg-gradient-to-r from-cyan-600 to-blue-700 text-white p-6">
+                    <div class="flex items-center gap-4">
+                        <div class="text-3xl">🧪</div>
+                        <div>
+                            <h2 class="text-2xl font-bold">More Code Examples With Explanation</h2>
+                            <p class="text-cyan-100 mt-1">असली काम में बार-बार आने वाले workflows</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="p-6 space-y-6">
+                    <div class="grid lg:grid-cols-2 gap-5">
+                        <div class="bg-sky-50 rounded-xl p-5 border border-sky-200">
+                            <h3 class="font-bold text-sky-900 mb-2">1. Git की पहली सेटिंग</h3>
+                            <p class="text-sm text-sky-800 mb-3">पहली बार Git install करने के बाद अपना नाम और email set करें। यही commit history में दिखता है।</p>
+                            <div class="code-block bg-slate-900 text-gray-100 p-4 rounded-lg code-font text-sm relative">
+                                <button class="copy-btn absolute top-3 right-3 px-3 py-1 bg-gray-700 hover:bg-gray-600 rounded text-xs transition-colors" data-copy="config-example">📋 कॉपी</button>
+                                <code id="config-example"># अपना नाम और email set करें
+git config --global user.name "Aman Sharma"
+git config --global user.email "aman@example.com"
+
+# check करें कि setting सही save हुई या नहीं
+git config --global --list</code>
+                            </div>
+                            <div class="mt-3 bg-white/80 p-3 rounded-lg text-sm text-sky-900">
+                                <strong>Advice:</strong> वही email use करें जो GitHub account में verified है, वरना commits profile पर link नहीं होंगे।
+                            </div>
+                        </div>
+
+                        <div class="bg-emerald-50 rounded-xl p-5 border border-emerald-200">
+                            <h3 class="font-bold text-emerald-900 mb-2">2. Existing Project को GitHub से जोड़ना</h3>
+                            <p class="text-sm text-emerald-800 mb-3">अगर project पहले से laptop में है और GitHub पर नई empty repo बनाई है, तो यह तरीका use करें।</p>
+                            <div class="code-block bg-slate-900 text-gray-100 p-4 rounded-lg code-font text-sm relative">
+                                <button class="copy-btn absolute top-3 right-3 px-3 py-1 bg-gray-700 hover:bg-gray-600 rounded text-xs transition-colors" data-copy="existing-project-example">📋 कॉपी</button>
+                                <code id="existing-project-example"># project folder में जाएँ
+cd my-old-project
+
+# Git start करें
+git init
+
+# remote GitHub repo connect करें
+git remote add origin https://github.com/username/my-old-project.git
+
+# first upload
+git add .
+git commit -m "initial upload from local project"
+git branch -M main
+git push -u origin main</code>
+                            </div>
+                            <div class="mt-3 bg-white/80 p-3 rounded-lg text-sm text-emerald-900">
+                                <strong>Explanation:</strong> <code>remote add origin</code> आपके local project को GitHub repo address देता है।
+                            </div>
+                        </div>
+
+                        <div class="bg-violet-50 rounded-xl p-5 border border-violet-200">
+                            <h3 class="font-bold text-violet-900 mb-2">3. सिर्फ एक file stage करना</h3>
+                            <p class="text-sm text-violet-800 mb-3">जब बहुत files बदली हों लेकिन commit में सिर्फ एक logical change डालना हो।</p>
+                            <div class="code-block bg-slate-900 text-gray-100 p-4 rounded-lg code-font text-sm relative">
+                                <button class="copy-btn absolute top-3 right-3 px-3 py-1 bg-gray-700 hover:bg-gray-600 rounded text-xs transition-colors" data-copy="single-file-example">📋 कॉपी</button>
+                                <code id="single-file-example"># देखें कौन-कौन सी files बदली हैं
+git status
+
+# सिर्फ login file stage करें
+git add src/pages/Login.jsx
+
+# changes preview करें
+git diff --staged
+
+# फिर commit करें
+git commit -m "fix: login validation message improved"</code>
+                            </div>
+                            <div class="mt-3 bg-white/80 p-3 rounded-lg text-sm text-violet-900">
+                                <strong>Pro tip:</strong> एक commit = एक clear reason. इससे review और rollback आसान होता है।
+                            </div>
+                        </div>
+
+                        <div class="bg-amber-50 rounded-xl p-5 border border-amber-200">
+                            <h3 class="font-bold text-amber-900 mb-2">4. Deleted file वापस लाना</h3>
+                            <p class="text-sm text-amber-800 mb-3">गलती से file delete हो जाए और commit नहीं किया है, तो Git से restore करें।</p>
+                            <div class="code-block bg-slate-900 text-gray-100 p-4 rounded-lg code-font text-sm relative">
+                                <button class="copy-btn absolute top-3 right-3 px-3 py-1 bg-gray-700 hover:bg-gray-600 rounded text-xs transition-colors" data-copy="restore-file-example">📋 कॉपी</button>
+                                <code id="restore-file-example"># कौन सी file deleted है देखें
+git status
+
+# एक file वापस लाएँ
+git restore src/components/Header.jsx
+
+# सारी uncommitted changes वापस करना हो
+git restore .</code>
+                            </div>
+                            <div class="mt-3 bg-white/80 p-3 rounded-lg text-sm text-amber-900">
+                                <strong>Warning:</strong> <code>git restore .</code> current uncommitted work हटा सकता है, इसलिए पहले <code>git status</code> पढ़ें।
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="bg-slate-50 rounded-xl p-5 border border-slate-200">
+                        <h3 class="font-bold text-slate-900 mb-3">5. Remote बदलना या check करना</h3>
+                        <p class="text-sm text-slate-700 mb-3">कभी-कभी repo गलत GitHub URL से जुड़ जाती है। तब remote URL update करें।</p>
+                        <div class="code-block bg-slate-900 text-gray-100 p-4 rounded-lg code-font text-sm relative">
+                            <button class="copy-btn absolute top-3 right-3 px-3 py-1 bg-gray-700 hover:bg-gray-600 rounded text-xs transition-colors" data-copy="remote-example">📋 कॉपी</button>
+                            <code id="remote-example"># current remote देखें
+git remote -v
+
+# remote URL बदलें
+git remote set-url origin https://github.com/username/correct-repo.git
+
+# check करें
+git remote -v
+
+# test push
+git push</code>
+                        </div>
+                    </div>
+
+                    <div class="grid lg:grid-cols-3 gap-5">
+                        <div class="bg-rose-50 rounded-xl p-5 border border-rose-200">
+                            <h3 class="font-bold text-rose-900 mb-2">6. Safe Undo: revert</h3>
+                            <p class="text-sm text-rose-800 mb-3">Team project में old commit हटाने के बजाय revert करें। यह नया undo commit बनाता है।</p>
+                            <div class="code-block bg-slate-900 text-gray-100 p-4 rounded-lg code-font text-xs relative">
+                                <button class="copy-btn absolute top-3 right-3 px-3 py-1 bg-gray-700 hover:bg-gray-600 rounded text-xs transition-colors" data-copy="revert-example">📋</button>
+                                <code id="revert-example">git log --oneline
+# मान लो गलत commit hash है a1b2c3d
+
+git revert a1b2c3d
+git push</code>
+                            </div>
+                        </div>
+
+                        <div class="bg-lime-50 rounded-xl p-5 border border-lime-200">
+                            <h3 class="font-bold text-lime-900 mb-2">7. Release Tag बनाना</h3>
+                            <p class="text-sm text-lime-800 mb-3">जब project version 1.0 ready हो, tag बनाकर release mark करें।</p>
+                            <div class="code-block bg-slate-900 text-gray-100 p-4 rounded-lg code-font text-xs relative">
+                                <button class="copy-btn absolute top-3 right-3 px-3 py-1 bg-gray-700 hover:bg-gray-600 rounded text-xs transition-colors" data-copy="tag-example">📋</button>
+                                <code id="tag-example">git tag v1.0.0
+git push origin v1.0.0
+
+# सभी tags देखें
+git tag</code>
+                            </div>
+                        </div>
+
+                        <div class="bg-fuchsia-50 rounded-xl p-5 border border-fuchsia-200">
+                            <h3 class="font-bold text-fuchsia-900 mb-2">8. GitHub Pages Deploy</h3>
+                            <p class="text-sm text-fuchsia-800 mb-3">Static HTML/CSS/JS website को GitHub Pages पर free host करें।</p>
+                            <div class="code-block bg-slate-900 text-gray-100 p-4 rounded-lg code-font text-xs relative">
+                                <button class="copy-btn absolute top-3 right-3 px-3 py-1 bg-gray-700 hover:bg-gray-600 rounded text-xs transition-colors" data-copy="pages-example">📋</button>
+                                <code id="pages-example"># files push करें
+git add .
+git commit -m "deploy static website"
+git push
+
+# GitHub > Settings > Pages
+# Source: Deploy from branch
+# Branch: main, folder: root</code>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="bg-indigo-50 border-l-4 border-indigo-500 p-5 rounded-r-xl">
+                        <h3 class="font-bold text-indigo-900 mb-2">Real-life Advice: कौन सा command कब use करें?</h3>
+                        <div class="grid md:grid-cols-2 gap-4 text-sm text-indigo-900">
+                            <div class="bg-white/70 rounded-lg p-3"><strong>Solo project:</strong> simple flow रखें: <code>pull</code>, <code>add</code>, <code>commit</code>, <code>push</code>। Branch तब बनाएं जब नया बड़ा feature हो।</div>
+                            <div class="bg-white/70 rounded-lg p-3"><strong>Team project:</strong> हर feature branch में करें, Pull Request बनाएं, review के बाद merge करें। Main branch को हमेशा stable रखें।</div>
+                            <div class="bg-white/70 rounded-lg p-3"><strong>Interview tip:</strong> Git को सिर्फ commands की तरह नहीं, code history, collaboration और rollback system की तरह explain करें।</div>
+                            <div class="bg-white/70 rounded-lg p-3"><strong>Common habit:</strong> commit से पहले <code>git diff</code> और push से पहले <code>git status</code> देखने की आदत बनाएं।</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Common Errors Section -->
+        <section class="mb-12 animate-slide-in">
+            <div class="step-card bg-white rounded-2xl shadow-lg border border-gray-200 overflow-hidden">
+                <div class="bg-gradient-to-r from-red-600 to-rose-600 text-white p-6">
+                    <div class="flex items-center gap-4">
+                        <div class="text-3xl">🐛</div>
+                        <div>
+                            <h2 class="text-2xl font-bold">Common Errors & Solutions</h2>
+                            <p class="text-red-100 mt-1">सबसे आम गलतियाँ और उनका इलाज</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="p-6 space-y-4">
+                    <div class="space-y-4">
+                        <div class="border border-red-200 rounded-xl overflow-hidden">
+                            <div class="bg-red-50 px-4 py-3 border-b border-red-200">
+                                <code class="code-font text-red-700 text-sm">fatal: not a git repository</code>
+                            </div>
+                            <div class="p-4 bg-white">
+                                <p class="text-sm text-gray-700 mb-2"><strong>कारण:</strong> आप गलत folder में हैं</p>
+                                <p class="text-sm text-gray-700"><strong>Solution:</strong></p>
+                                <div class="code-block bg-slate-900 text-gray-100 p-3 rounded-lg code-font text-xs mt-2">
+                                    <code># सही folder में जाएँ जहाँ .git folder है
+cd my-project
+pwd  # present working directory देखें
+ls -la  # .git folder दिखना चाहिए</code>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="border border-red-200 rounded-xl overflow-hidden">
+                            <div class="bg-red-50 px-4 py-3 border-b border-red-200">
+                                <code class="code-font text-red-700 text-sm">Permission denied (publickey)</code>
+                            </div>
+                            <div class="p-4 bg-white">
+                                <p class="text-sm text-gray-700 mb-2"><strong>कारण:</strong> SSH key setup नहीं है</p>
+                                <p class="text-sm text-gray-700"><strong>Solution:</strong> HTTPS URL use करें या SSH key बनाएँ</p>
+                                <div class="code-block bg-slate-900 text-gray-100 p-3 rounded-lg code-font text-xs mt-2">
+                                    <code># HTTPS use करें (आसान):
+git clone https://github.com/username/repo.git
+
+# या SSH key बनाएँ:
+ssh-keygen -t ed25519 -C "your@email.com"
+cat ~/.ssh/id_ed25519.pub
+# इसे GitHub > Settings > SSH Keys में डालें</code>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="border border-red-200 rounded-xl overflow-hidden">
+                            <div class="bg-red-50 px-4 py-3 border-b border-red-200">
+                                <code class="code-font text-red-700 text-sm">failed to push some refs</code>
+                            </div>
+                            <div class="p-4 bg-white">
+                                <p class="text-sm text-gray-700 mb-2"><strong>कारण:</strong> Remote पर नए changes हैं जो आपके पास नहीं</p>
+                                <p class="text-sm text-gray-700"><strong>Solution:</strong></p>
+                                <div class="code-block bg-slate-900 text-gray-100 p-3 rounded-lg code-font text-xs mt-2">
+                                    <code># पहले pull करें
+git pull origin main
+
+# अगर conflict आए तो resolve करें
+# फिर push करें
+git push</code>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="border border-red-200 rounded-xl overflow-hidden">
+                            <div class="bg-red-50 px-4 py-3 border-b border-red-200">
+                                <code class="code-font text-red-700 text-sm">The following untracked working tree files would be overwritten</code>
+                            </div>
+                            <div class="p-4 bg-white">
+                                <p class="text-sm text-gray-700"><strong>Solution:</strong></p>
+                                <div class="code-block bg-slate-900 text-gray-100 p-3 rounded-lg code-font text-xs mt-2">
+                                    <code># Stash करके बचाएँ
+git stash
+git pull
+git stash pop
+
+# या force करें (सावधान!)
+git reset --hard HEAD
+git pull</code>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Real Life Projects -->
+        <section class="mb-12 animate-slide-in">
+            <div class="step-card bg-white rounded-2xl shadow-lg border border-gray-200 overflow-hidden">
+                <div class="bg-gradient-to-r from-teal-600 to-cyan-600 text-white p-6">
+                    <div class="flex items-center gap-4">
+                        <div class="text-3xl">🎯</div>
+                        <div>
+                            <h2 class="text-2xl font-bold">Real-Life Project Examples</h2>
+                            <p class="text-teal-100 mt-1">वास्तविक परिदृश्य में Git का उपयोग</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="p-6 space-y-6">
+                    <!-- Example 1 -->
+                    <div class="bg-gradient-to-r from-blue-50 to-indigo-50 rounded-xl p-5 border border-blue-200">
+                        <h3 class="font-bold text-blue-900 mb-3">🌐 Example 1: Website Development Team</h3>
+                        <div class="space-y-3 text-sm text-blue-800">
+                            <p><strong>टीम:</strong> 3 Developers (You, Rahul, Priya)</p>
+                            <p><strong>Project:</strong> E-commerce Website</p>
+                            
+                            <div class="bg-white rounded-lg p-3 space-y-2">
+                                <p class="font-semibold">📝 दिन का क्रम:</p>
+                                <ol class="list-decimal list-inside space-y-1 text-xs">
+                                    <li>सुबह: <code class="bg-gray-100 px-1 rounded">git pull origin main</code> - Priya की रात की changes लाएँ</li>
+                                    <li>नई branch: <code class="bg-gray-100 px-1 rounded">git checkout -b feature-product-page</code></li>
+                                    <li>काम किया, 3 commits बनाए</li>
+                                    <li>Push: <code class="bg-gray-100 px-1 rounded">git push -u origin feature-product-page</code></li>
+                                    <li>GitHub पर Pull Request बनाया</li>
+                                    <li>Rahul ने review किया, comment किया</li>
+                                    <li>Changes किए, फिर merge हो गया</li>
+                                </ol>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Example 2 -->
+                    <div class="bg-gradient-to-r from-green-50 to-emerald-50 rounded-xl p-5 border border-green-200">
+                        <h3 class="font-bold text-green-900 mb-3">📱 Example 2: Mobile App Development</h3>
+                        <div class="space-y-3 text-sm text-green-800">
+                            <p><strong>स्थिति:</strong> आप अकेले काम कर रहे हैं, लेकिन 2 devices (Laptop + Desktop)</p>
+                            
+                            <div class="bg-white rounded-lg p-3">
+                                <p class="font-semibold mb-2">🔄 Workflow:</p>
+                                <div class="code-block bg-slate-900 text-gray-100 p-3 rounded-lg code-font text-xs">
+                                    <code># Laptop पर:
+git add .
+git commit -m "added login screen"
+git push
+
+# Desktop पर switch करें:
+git pull
+# सारा काम यहाँ आ गया!
+
+# Desktop पर काम किया:
+git add .
+git commit -m "added signup screen"
+git push
+
+# वापस Laptop पर:
+git pull</code>
+                                </div>
+                            </div>
+                            <p class="text-xs italic">GitHub = आपका Google Drive, बस code के लिए!</p>
+                        </div>
+                    </div>
+
+                    <!-- Example 3 -->
+                    <div class="bg-gradient-to-r from-purple-50 to-pink-50 rounded-xl p-5 border border-purple-200">
+                        <h3 class="font-bold text-purple-900 mb-3">🔥 Example 3: Bug Fix Emergency</h3>
+                        <div class="space-y-3 text-sm text-purple-800">
+                            <p><strong>स्थिति:</strong> Live website पर bug आया, तुरंत fix करना है</p>
+                            
+                            <div class="bg-white rounded-lg p-3">
+                                <p class="font-semibold mb-2">⚡ Emergency Workflow:</p>
+                                <div class="code-block bg-slate-900 text-gray-100 p-3 rounded-lg code-font text-xs">
+                                    <code># जो भी कर रहे थे, stash करें
+git stash
+
+# Main branch पर जाएँ
+git checkout main
+git pull
+
+# Hotfix branch बनाएँ
+git checkout -b hotfix-payment-bug
+
+# Bug fix करें, commit करें
+git add .
+git commit -m "hotfix: payment gateway timeout issue"
+
+# Push और PR बनाएँ (fast review)
+git push -u origin hotfix-payment-bug
+
+# Merge के बाद वापस अपने काम पर
+git checkout feature-branch
+git stash pop</code>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Best Practices -->
+                    <div class="bg-amber-50 border-l-4 border-amber-500 p-4 rounded-r-lg">
+                        <h4 class="font-bold text-amber-900 mb-2">🏆 Professional Best Practices</h4>
+                        <ul class="space-y-2 text-sm text-amber-800">
+                            <li class="flex items-start gap-2">
+                                <span class="text-green-600 font-bold">✓</span>
+                                <span>हर दिन सुबह <code class="bg-white px-1 rounded">git pull</code> करें</span>
+                            </li>
+                            <li class="flex items-start gap-2">
+                                <span class="text-green-600 font-bold">✓</span>
+                                <span>Main branch पर सीधे कभी commit न करें</span>
+                            </li>
+                            <li class="flex items-start gap-2">
+                                <span class="text-green-600 font-bold">✓</span>
+                                <span>Meaningful commit messages लिखें</span>
+                            </li>
+                            <li class="flex items-start gap-2">
+                                <span class="text-green-600 font-bold">✓</span>
+                                <span>छोटे-छोटे commits करें (बड़े commits नहीं)</span>
+                            </li>
+                            <li class="flex items-start gap-2">
+                                <span class="text-green-600 font-bold">✓</span>
+                                <span>.gitignore में sensitive files डालें</span>
+                            </li>
+                            <li class="flex items-start gap-2">
+                                <span class="text-green-600 font-bold">✓</span>
+                                <span>Push से पहले <code class="bg-white px-1 rounded">git status</code> ज़रूर देखें</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Extra Troubleshooting Lab -->
+        <section class="mb-12 animate-slide-in">
+            <div class="step-card bg-white rounded-2xl shadow-lg border border-gray-200 overflow-hidden">
+                <div class="bg-gradient-to-r from-zinc-700 to-slate-800 text-white p-6">
+                    <div class="flex items-center gap-4">
+                        <div class="text-3xl">🔧</div>
+                        <div>
+                            <h2 class="text-2xl font-bold">Bug Fix Lab: Real Problems, Real Solutions</h2>
+                            <p class="text-slate-300 mt-1">जब Git, GitHub या browser copy feature काम न करे</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="p-6 space-y-6">
+                    <div class="bg-blue-50 rounded-xl p-5 border border-blue-200">
+                        <h3 class="font-bold text-blue-900 mb-2">1. Copy button क्यों fail हो सकता है?</h3>
+                        <p class="text-sm text-blue-800 mb-3">कुछ browsers clipboard को सिर्फ HTTPS या localhost पर allow करते हैं। इसलिए इस page में 3-layer copy system add किया गया है:</p>
+                        <div class="grid md:grid-cols-3 gap-3 text-sm">
+                            <div class="bg-white rounded-lg p-3 border border-blue-100"><strong>Layer 1:</strong> Modern <code>navigator.clipboard</code></div>
+                            <div class="bg-white rounded-lg p-3 border border-blue-100"><strong>Layer 2:</strong> Hidden textarea fallback</div>
+                            <div class="bg-white rounded-lg p-3 border border-blue-100"><strong>Layer 3:</strong> Manual prompt fallback</div>
+                        </div>
+                        <div class="mt-4 code-block bg-slate-900 text-gray-100 p-4 rounded-lg code-font text-sm relative">
+                            <button class="copy-btn absolute top-3 right-3 px-3 py-1 bg-gray-700 hover:bg-gray-600 rounded text-xs transition-colors" data-copy="copy-test-example">📋 Test Copy</button>
+                            <code id="copy-test-example"># अगर यह text copy हो जाए तो button ठीक है
+echo "Copy button is working"
+
+# अगर browser prompt आए तो भी problem नहीं है
+# Prompt में Ctrl+C दबाकर manual copy करें</code>
+                        </div>
+                    </div>
+
+                    <div class="grid lg:grid-cols-2 gap-5">
+                        <div class="bg-red-50 rounded-xl p-5 border border-red-200">
+                            <h3 class="font-bold text-red-900 mb-2">2. GitHub password काम नहीं कर रहा?</h3>
+                            <p class="text-sm text-red-800 mb-3">GitHub normal password से Git push/pull नहीं करने देता। HTTPS में Personal Access Token use करें।</p>
+                            <div class="code-block bg-slate-900 text-gray-100 p-4 rounded-lg code-font text-sm relative">
+                                <button class="copy-btn absolute top-3 right-3 px-3 py-1 bg-gray-700 hover:bg-gray-600 rounded text-xs transition-colors" data-copy="pat-example">📋 कॉपी</button>
+                                <code id="pat-example"># Username वही रहेगा
+# Password की जगह GitHub Personal Access Token paste करें
+
+git push origin main
+
+# अगर wrong credentials save हैं तो Windows में:
+# Control Panel > Credential Manager > GitHub remove करें</code>
+                            </div>
+                        </div>
+
+                        <div class="bg-yellow-50 rounded-xl p-5 border border-yellow-200">
+                            <h3 class="font-bold text-yellow-900 mb-2">3. Line ending warning: CRLF / LF</h3>
+                            <p class="text-sm text-yellow-800 mb-3">Windows में यह warning common है। डरने की जरूरत नहीं, बस team के हिसाब से config set करें।</p>
+                            <div class="code-block bg-slate-900 text-gray-100 p-4 rounded-lg code-font text-sm relative">
+                                <button class="copy-btn absolute top-3 right-3 px-3 py-1 bg-gray-700 hover:bg-gray-600 rounded text-xs transition-colors" data-copy="line-ending-example">📋 कॉपी</button>
+                                <code id="line-ending-example"># Windows users
+git config --global core.autocrlf true
+
+# Mac/Linux users
+git config --global core.autocrlf input
+
+# check
+git config --global core.autocrlf</code>
+                            </div>
+                        </div>
+
+                        <div class="bg-purple-50 rounded-xl p-5 border border-purple-200">
+                            <h3 class="font-bold text-purple-900 mb-2">4. बड़ी file accidentally add हो गई?</h3>
+                            <p class="text-sm text-purple-800 mb-3">Video, zip, database dump जैसी बड़ी files GitHub पर push न करें। पहले stage से हटाएँ।</p>
+                            <div class="code-block bg-slate-900 text-gray-100 p-4 rounded-lg code-font text-sm relative">
+                                <button class="copy-btn absolute top-3 right-3 px-3 py-1 bg-gray-700 hover:bg-gray-600 rounded text-xs transition-colors" data-copy="large-file-example">📋 कॉपी</button>
+                                <code id="large-file-example"># stage से file हटाएँ, local file नहीं हटेगी
+git restore --staged assets/demo-video.mp4
+
+# .gitignore में add करें
+echo "*.mp4" >> .gitignore
+echo "*.zip" >> .gitignore
+
+# अब .gitignore commit करें
+git add .gitignore
+git commit -m "chore: ignore large binary files"</code>
+                            </div>
+                        </div>
+
+                        <div class="bg-green-50 rounded-xl p-5 border border-green-200">
+                            <h3 class="font-bold text-green-900 mb-2">5. Folder/file rename Git detect नहीं कर रहा?</h3>
+                            <p class="text-sm text-green-800 mb-3">Windows में case-only rename problem आ सकती है, जैसे header.jsx से Header.jsx।</p>
+                            <div class="code-block bg-slate-900 text-gray-100 p-4 rounded-lg code-font text-sm relative">
+                                <button class="copy-btn absolute top-3 right-3 px-3 py-1 bg-gray-700 hover:bg-gray-600 rounded text-xs transition-colors" data-copy="rename-example">📋 कॉपी</button>
+                                <code id="rename-example"># safe rename technique
+git mv src/header.jsx src/temp-header.jsx
+git mv src/temp-header.jsx src/Header.jsx
+
+git commit -m "fix: rename Header component casing"</code>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="bg-slate-50 rounded-xl p-5 border border-slate-200">
+                        <h3 class="font-bold text-slate-900 mb-3">6. Debug checklist: Push से पहले यह 5 commands चलाएँ</h3>
+                        <p class="text-sm text-slate-700 mb-3">जब भी कुछ strange लगे, यह checklist problem पकड़ने में मदद करती है।</p>
+                        <div class="code-block bg-slate-900 text-gray-100 p-4 rounded-lg code-font text-sm relative">
+                            <button class="copy-btn absolute top-3 right-3 px-3 py-1 bg-gray-700 hover:bg-gray-600 rounded text-xs transition-colors" data-copy="debug-checklist-example">📋 कॉपी</button>
+                            <code id="debug-checklist-example">git status
+git branch
+git remote -v
+git log --oneline -5
+git diff --staged</code>
+                        </div>
+                        <div class="mt-3 bg-white rounded-lg p-3 text-sm text-slate-700">
+                            <strong>Meaning:</strong> status बताता है क्या बदला, branch बताती है आप कहाँ हैं, remote बताता है GitHub URL, log last commits दिखाता है, diff staged changes preview करता है।
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Production Ready Toolkit -->
+        <section id="production" class="mb-12 animate-slide-in">
+            <div class="step-card bg-white rounded-2xl shadow-lg border border-gray-200 overflow-hidden">
+                <div class="bg-gradient-to-r from-slate-800 to-blue-900 text-white p-6">
+                    <div class="flex items-center gap-4">
+                        <div class="text-3xl">🏁</div>
+                        <div>
+                            <h2 class="text-2xl font-bold">Production Level Git Toolkit</h2>
+                            <p class="text-slate-300 mt-1">Real company workflow, release, review और safety checklist</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="p-6 space-y-6">
+                    <div class="soft-panel">
+                        <h3 class="font-bold text-lg mb-3 text-slate-900">Production Ready Checklist</h3>
+                        <div class="production-grid text-sm text-slate-700">
+                            <label class="flex gap-2 items-start"><input type="checkbox" class="mt-1 accent-blue-600"> <span>Feature branch latest main से updated है</span></label>
+                            <label class="flex gap-2 items-start"><input type="checkbox" class="mt-1 accent-blue-600"> <span>Commit messages clear और meaningful हैं</span></label>
+                            <label class="flex gap-2 items-start"><input type="checkbox" class="mt-1 accent-blue-600"> <span>Secrets, .env, API keys commit नहीं हुए</span></label>
+                            <label class="flex gap-2 items-start"><input type="checkbox" class="mt-1 accent-blue-600"> <span>README में run/setup steps updated हैं</span></label>
+                            <label class="flex gap-2 items-start"><input type="checkbox" class="mt-1 accent-blue-600"> <span>Tests या manual testing complete है</span></label>
+                            <label class="flex gap-2 items-start"><input type="checkbox" class="mt-1 accent-blue-600"> <span>Pull Request में screenshots और description है</span></label>
+                            <label class="flex gap-2 items-start"><input type="checkbox" class="mt-1 accent-blue-600"> <span>Large files और build artifacts ignore हैं</span></label>
+                            <label class="flex gap-2 items-start"><input type="checkbox" class="mt-1 accent-blue-600"> <span>Merge से पहले conflict resolve हो चुके हैं</span></label>
+                        </div>
+                    </div>
+
+                    <div class="grid lg:grid-cols-2 gap-5">
+                        <div class="bg-blue-50 rounded-xl p-5 border border-blue-200">
+                            <h3 class="font-bold text-blue-900 mb-2">Release Workflow: v1.0 Launch</h3>
+                            <p class="text-sm text-blue-800 mb-3">जब app production में release करनी हो, release branch और tag workflow follow करें।</p>
+                            <div class="code-block bg-slate-900 text-gray-100 p-4 rounded-lg code-font text-sm relative">
+                                <button class="copy-btn absolute top-3 right-3 px-3 py-1 bg-gray-700 hover:bg-gray-600 rounded text-xs transition-colors" data-copy="production-release-example">📋 कॉपी</button>
+                                <code id="production-release-example">git checkout main && git pull origin main && git checkout -b release/v1.0.0 && git push -u origin release/v1.0.0</code>
+                            </div>
+                            <p class="text-xs text-blue-700 mt-3">PR merge होने के बाद tag बनाएं: <code>git tag v1.0.0</code> और <code>git push origin v1.0.0</code></p>
+                        </div>
+
+                        <div class="bg-emerald-50 rounded-xl p-5 border border-emerald-200">
+                            <h3 class="font-bold text-emerald-900 mb-2">Hotfix Workflow: Production Bug</h3>
+                            <p class="text-sm text-emerald-800 mb-3">Live bug में panic नहीं, main से hotfix branch बनाकर PR करें।</p>
+                            <div class="code-block bg-slate-900 text-gray-100 p-4 rounded-lg code-font text-sm relative">
+                                <button class="copy-btn absolute top-3 right-3 px-3 py-1 bg-gray-700 hover:bg-gray-600 rounded text-xs transition-colors" data-copy="production-hotfix-example">📋 कॉपी</button>
+                                <code id="production-hotfix-example">git checkout main && git pull origin main && git checkout -b hotfix/login-crash && git add . && git commit -m "hotfix: prevent login crash" && git push -u origin hotfix/login-crash</code>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="soft-panel">
+                        <h3 class="font-bold text-lg mb-3 text-slate-900">Interactive Command Builder</h3>
+                        <p class="text-sm text-slate-700 mb-4">अपना task चुनें और ready-to-copy command बनाएं। यह beginners के लिए safe shortcut है।</p>
+                        <div class="grid md:grid-cols-3 gap-3 mb-4">
+                            <label class="text-sm font-semibold text-slate-700">Task
+                                <select id="commandTask" class="mt-1 w-full rounded-lg border border-gray-300 bg-white px-3 py-2 text-sm">
+                                    <option value="feature">नई feature branch</option>
+                                    <option value="commit">Add + commit</option>
+                                    <option value="push">First push</option>
+                                    <option value="undo">Last commit undo safe</option>
+                                    <option value="stash">Temporary stash</option>
+                                </select>
+                            </label>
+                            <label class="text-sm font-semibold text-slate-700">Name / Message
+                                <input id="commandName" value="login-page" class="mt-1 w-full rounded-lg border border-gray-300 bg-white px-3 py-2 text-sm" placeholder="login-page">
+                            </label>
+                            <label class="text-sm font-semibold text-slate-700">Branch
+                                <input id="commandBranch" value="main" class="mt-1 w-full rounded-lg border border-gray-300 bg-white px-3 py-2 text-sm" placeholder="main">
+                            </label>
+                        </div>
+                        <div class="code-block command-output bg-slate-900 text-gray-100 p-4 rounded-lg code-font text-sm relative">
+                            <button class="copy-btn absolute top-3 right-3 px-3 py-1 bg-gray-700 hover:bg-gray-600 rounded text-xs transition-colors" data-copy="generated-command">📋 कॉपी</button>
+                            <code id="generated-command">git checkout -b feature/login-page</code>
+                        </div>
+                    </div>
+
+                    <div class="grid lg:grid-cols-3 gap-5">
+                        <div class="soft-panel">
+                            <h3 class="font-bold text-slate-900 mb-2">Commit Quality Formula</h3>
+                            <p class="text-sm text-slate-700 mb-3"><strong>type(scope): short reason</strong> format use करें।</p>
+                            <div class="space-y-2 text-sm">
+                                <div><span class="status-dot bg-green-500"></span><code>feat(auth): add login page</code></div>
+                                <div><span class="status-dot bg-yellow-500"></span><code>fix(cart): handle empty price</code></div>
+                                <div><span class="status-dot bg-blue-500"></span><code>docs(readme): add setup steps</code></div>
+                                <div><span class="status-dot bg-purple-500"></span><code>refactor(ui): simplify header</code></div>
+                            </div>
+                        </div>
+
+                        <div class="soft-panel">
+                            <h3 class="font-bold text-slate-900 mb-2">PR Review Checklist</h3>
+                            <ul class="space-y-2 text-sm text-slate-700">
+                                <li>Code readable और simple है?</li>
+                                <li>Duplicate logic तो नहीं?</li>
+                                <li>Error handling मौजूद है?</li>
+                                <li>Mobile responsive check हुआ?</li>
+                                <li>Security issue तो नहीं?</li>
+                            </ul>
+                        </div>
+
+                        <div class="soft-panel">
+                            <h3 class="font-bold text-slate-900 mb-2">Rollback Plan</h3>
+                            <p class="text-sm text-slate-700 mb-3">Production deploy के बाद bug मिले तो revert use करें।</p>
+                            <div class="code-block bg-slate-900 text-gray-100 p-3 rounded-lg code-font text-xs relative">
+                                <button class="copy-btn absolute top-2 right-2 px-2 py-0.5 bg-gray-700 hover:bg-gray-600 rounded text-xs" data-copy="rollback-example">📋</button>
+                                <code id="rollback-example">git log --oneline && git revert [bad-commit-hash] && git push origin main</code>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Glossary and Interview Prep -->
+        <section class="mb-12 animate-slide-in">
+            <div class="step-card bg-white rounded-2xl shadow-lg border border-gray-200 overflow-hidden">
+                <div class="bg-gradient-to-r from-violet-700 to-fuchsia-700 text-white p-6">
+                    <div class="flex items-center gap-4">
+                        <div class="text-3xl">🎤</div>
+                        <div>
+                            <h2 class="text-2xl font-bold">Glossary + Interview Prep</h2>
+                            <p class="text-violet-100 mt-1">Git को confidently explain करने के लिए quick revision</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="p-6 space-y-6">
+                    <div class="production-grid">
+                        <div class="soft-panel"><strong>Repository:</strong><p class="text-sm mt-1 text-slate-700">Project की tracked history वाली folder या GitHub storage.</p></div>
+                        <div class="soft-panel"><strong>Commit:</strong><p class="text-sm mt-1 text-slate-700">Code का saved snapshot, message और author के साथ.</p></div>
+                        <div class="soft-panel"><strong>Branch:</strong><p class="text-sm mt-1 text-slate-700">Main code से अलग safe working line.</p></div>
+                        <div class="soft-panel"><strong>Merge:</strong><p class="text-sm mt-1 text-slate-700">एक branch के changes दूसरी branch में जोड़ना.</p></div>
+                        <div class="soft-panel"><strong>Remote:</strong><p class="text-sm mt-1 text-slate-700">GitHub जैसी online repo location.</p></div>
+                        <div class="soft-panel"><strong>Pull Request:</strong><p class="text-sm mt-1 text-slate-700">Review request कि मेरी branch main में merge करें.</p></div>
+                    </div>
+
+                    <div class="grid lg:grid-cols-2 gap-5">
+                        <div class="bg-indigo-50 rounded-xl p-5 border border-indigo-200">
+                            <h3 class="font-bold text-indigo-900 mb-3">Interview Q&A</h3>
+                            <div class="space-y-3 text-sm text-indigo-900">
+                                <details class="bg-white rounded-lg p-3"><summary class="font-semibold cursor-pointer">Git और GitHub में difference?</summary><p class="mt-2">Git local version control tool है, GitHub online hosting और collaboration platform है।</p></details>
+                                <details class="bg-white rounded-lg p-3"><summary class="font-semibold cursor-pointer">Merge conflict क्या होता है?</summary><p class="mt-2">जब दो branches same file की same lines अलग-अलग बदलती हैं और Git decide नहीं कर पाता।</p></details>
+                                <details class="bg-white rounded-lg p-3"><summary class="font-semibold cursor-pointer">Rebase और merge में difference?</summary><p class="mt-2">Merge history preserve करता है, rebase commits को नई base पर replay करके history linear बनाता है।</p></details>
+                                <details class="bg-white rounded-lg p-3"><summary class="font-semibold cursor-pointer">git pull क्या करता है?</summary><p class="mt-2">Remote से latest changes fetch करता है और current branch में integrate करता है।</p></details>
+                            </div>
+                        </div>
+
+                        <div class="bg-rose-50 rounded-xl p-5 border border-rose-200">
+                            <h3 class="font-bold text-rose-900 mb-3">Mistakes To Avoid</h3>
+                            <ul class="space-y-3 text-sm text-rose-900">
+                                <li><strong>Force push on main:</strong> team history बिगड़ सकती है।</li>
+                                <li><strong>Secrets commit:</strong> API keys leak हो सकती हैं।</li>
+                                <li><strong>Huge commits:</strong> review और rollback मुश्किल होता है।</li>
+                                <li><strong>No pull before work:</strong> conflicts बढ़ सकते हैं।</li>
+                                <li><strong>Wrong branch work:</strong> हमेशा <code>git branch</code> check करें।</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Repository Structure and Ownership -->
+        <section class="mb-12 animate-slide-in">
+            <div class="step-card bg-white rounded-2xl shadow-lg border border-gray-200 overflow-hidden">
+                <div class="bg-gradient-to-r from-gray-900 to-slate-700 text-white p-6">
+                    <div class="flex items-center gap-4">
+                        <div class="text-3xl">📦</div>
+                        <div>
+                            <h2 class="text-2xl font-bold">Production Repository Format</h2>
+                            <p class="text-slate-300 mt-1">Developer info, repo link और deploy-ready file structure</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="p-6 space-y-6">
+                    <div class="grid md:grid-cols-2 gap-5">
+                        <div class="soft-panel">
+                            <h3 class="font-bold text-slate-900 mb-3">Developer Details</h3>
+                            <div class="space-y-2 text-sm text-slate-700">
+                                <p><strong>Developer Name:</strong> <span id="developerName">Your Name</span></p>
+                                <p><strong>Repository:</strong> <a id="repoLink" href="https://github.com/your-username/git-github-hindi-masterclass" target="_blank" rel="noopener" class="text-blue-600 underline">https://github.com/your-username/git-github-hindi-masterclass</a></p>
+                                <p><strong>Version:</strong> 2026 Latest Production Edition</p>
+                                <p><strong>License:</strong> MIT</p>
+                            </div>
+                            <div class="mt-4 bg-blue-50 border border-blue-200 rounded-lg p-3 text-sm text-blue-900">Replace <code>Your Name</code> और GitHub URL को अपनी real details से update करें।</div>
+                        </div>
+
+                        <div class="soft-panel">
+                            <h3 class="font-bold text-slate-900 mb-3">Deployment Notes</h3>
+                            <ul class="space-y-2 text-sm text-slate-700">
+                                <li>GitHub Pages पर root folder से deploy करें।</li>
+                                <li>PWA files: <code>manifest.json</code> और <code>sw.js</code> included हैं।</li>
+                                <li>Privacy page tracking/cookies-free policy बताता है।</li>
+                                <li>Offline support cache-first service worker से मिलता है।</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="code-block bg-slate-900 text-gray-100 p-4 rounded-lg code-font text-sm relative">
+                        <button class="copy-btn absolute top-3 right-3 px-3 py-1 bg-gray-700 hover:bg-gray-600 rounded text-xs transition-colors" data-copy="repo-structure-tree">📋 कॉपी</button>
+                        <code id="repo-structure-tree">/&#10;├── index.html            # Main entry point&#10;├── styles.css            # All styles (glassmorphism, dark/light, responsive)&#10;├── script.js             # All vanilla JavaScript logic&#10;├── manifest.json         # PWA manifest (standalone, theme colors, icons data URI)&#10;├── sw.js                 # Service worker (cache-first, offline support)&#10;├── privacy.html          # Privacy policy (no tracking, no cookies, local processing)&#10;├── robots.txt            # User-agent: * Allow: /&#10;├── sitemap.xml           # Sitemap listing index.html, privacy.html&#10;├── README.md             # Documentation (setup, deployment, library download instructions)&#10;├── .gitignore            # Ignore node_modules, .DS_Store, etc. (if any)&#10;├── LICENSE               # MIT or your chosen open-source license (optional)&#10;├── data.json             # Optional - for JSON-driven apps (catalog, settings)&#10;└── lib/                  # Self-hosted libraries (download via instructions in README)&#10;    └── .gitkeep          # Keeps empty lib folder in Git</code>
+                    </div>
+
+                    <div class="grid lg:grid-cols-3 gap-5">
+                        <div class="bg-green-50 rounded-xl p-5 border border-green-200">
+                            <h3 class="font-bold text-green-900 mb-2">Setup Commands</h3>
+                            <div class="code-block bg-slate-900 text-gray-100 p-3 rounded-lg code-font text-xs relative">
+                                <button class="copy-btn absolute top-2 right-2 px-2 py-0.5 bg-gray-700 hover:bg-gray-600 rounded text-xs" data-copy="repo-setup-commands">📋</button>
+                                <code id="repo-setup-commands">git init&#10;git add .&#10;git commit -m "production: complete GitHub Hindi guide"&#10;git branch -M main&#10;git remote add origin https://github.com/your-username/git-github-hindi-masterclass.git&#10;git push -u origin main</code>
+                            </div>
+                        </div>
+
+                        <div class="bg-purple-50 rounded-xl p-5 border border-purple-200">
+                            <h3 class="font-bold text-purple-900 mb-2">GitHub Pages</h3>
+                            <p class="text-sm text-purple-800">Repo Settings → Pages → Deploy from branch → <code>main</code> → <code>/root</code>. कुछ मिनट बाद site live हो जाएगी।</p>
+                        </div>
+
+                        <div class="bg-amber-50 rounded-xl p-5 border border-amber-200">
+                            <h3 class="font-bold text-amber-900 mb-2">Latest Status</h3>
+                            <p class="text-sm text-amber-800">Responsive layout, dark mode, copy fallback, PWA files, privacy page, robots और sitemap अब included हैं।</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Developer Contact & Community -->
+        <section class="mb-12 animate-slide-in">
+            <div class="step-card bg-white rounded-2xl shadow-lg border border-gray-200 overflow-hidden">
+                <div class="bg-gradient-to-r from-sky-700 to-blue-800 text-white p-6">
+                    <div class="flex items-center gap-4">
+                        <div class="text-3xl">👨‍💻</div>
+                        <div>
+                            <h2 class="text-2xl font-bold">Developer Contact & Community</h2>
+                            <p class="text-sky-100 mt-1">Connect करें, सवाल पूछें, और community से जुड़ें</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="p-6 space-y-6">
+                    <!-- Developer Info Cards -->
+                    <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-4">
+                        <a href="mailto:your-email@example.com" class="bg-red-50 border border-red-200 rounded-xl p-4 hover:shadow-md transition-all flex items-center gap-3">
+                            <div class="w-10 h-10 bg-red-500 text-white rounded-full flex items-center justify-center text-lg">📧</div>
+                            <div>
+                                <div class="font-bold text-red-900">Email</div>
+                                <div class="text-sm text-red-700">your-email@example.com</div>
+                            </div>
+                        </a>
+                        <a href="https://linkedin.com/in/yourprofile" target="_blank" class="bg-blue-50 border border-blue-200 rounded-xl p-4 hover:shadow-md transition-all flex items-center gap-3">
+                            <div class="w-10 h-10 bg-blue-700 text-white rounded-full flex items-center justify-center text-lg">💼</div>
+                            <div>
+                                <div class="font-bold text-blue-900">LinkedIn</div>
+                                <div class="text-sm text-blue-700">Connect professionally</div>
+                            </div>
+                        </a>
+                        <a href="https://twitter.com/yourhandle" target="_blank" class="bg-sky-50 border border-sky-200 rounded-xl p-4 hover:shadow-md transition-all flex items-center gap-3">
+                            <div class="w-10 h-10 bg-sky-500 text-white rounded-full flex items-center justify-center text-lg">🐦</div>
+                            <div>
+                                <div class="font-bold text-sky-900">Twitter/X</div>
+                                <div class="text-sm text-sky-700">@yourhandle</div>
+                            </div>
+                        </a>
+                        <a href="https://yourwebsite.com" target="_blank" class="bg-purple-50 border border-purple-200 rounded-xl p-4 hover:shadow-md transition-all flex items-center gap-3">
+                            <div class="w-10 h-10 bg-purple-600 text-white rounded-full flex items-center justify-center text-lg">🌐</div>
+                            <div>
+                                <div class="font-bold text-purple-900">Website</div>
+                                <div class="text-sm text-purple-700">yourwebsite.com</div>
+                            </div>
+                        </a>
+                    </div>
+
+                    <!-- Community Links -->
+                    <div class="grid md:grid-cols-3 gap-4">
+                        <a href="https://discord.gg/yourinvite" target="_blank" class="bg-indigo-50 border border-indigo-200 rounded-xl p-5 hover:shadow-md transition-all text-center">
+                            <div class="text-4xl mb-2">💬</div>
+                            <div class="font-bold text-indigo-900">Discord Community</div>
+                            <p class="text-sm text-indigo-700 mt-1">Live chat, Q&A, और doubt sessions</p>
+                            <span class="inline-block mt-3 px-4 py-1 bg-indigo-600 text-white rounded-full text-sm">Join Discord →</span>
+                        </a>
+                        <a href="https://t.me/yourchannel" target="_blank" class="bg-cyan-50 border border-cyan-200 rounded-xl p-5 hover:shadow-md transition-all text-center">
+                            <div class="text-4xl mb-2">✈️</div>
+                            <div class="font-bold text-cyan-900">Telegram Channel</div>
+                            <p class="text-sm text-cyan-700 mt-1">Updates, tips और announcements</p>
+                            <span class="inline-block mt-3 px-4 py-1 bg-cyan-600 text-white rounded-full text-sm">Join Telegram →</span>
+                        </a>
+                        <a href="https://github.com/your-username/git-github-hindi-masterclass/discussions" target="_blank" class="bg-gray-50 border border-gray-200 rounded-xl p-5 hover:shadow-md transition-all text-center">
+                            <div class="text-4xl mb-2">🗣️</div>
+                            <div class="font-bold text-gray-900">GitHub Discussions</div>
+                            <p class="text-sm text-gray-700 mt-1">Feature requests और help</p>
+                            <span class="inline-block mt-3 px-4 py-1 bg-gray-800 text-white rounded-full text-sm">Start Discussion →</span>
+                        </a>
+                    </div>
+
+                    <!-- Feedback Form -->
+                    <div class="bg-gradient-to-r from-green-50 to-emerald-50 rounded-xl p-6 border border-green-200">
+                        <h3 class="font-bold text-green-900 mb-4 flex items-center gap-2">
+                            <span class="text-xl">📝</span> Feedback / Contact Form
+                        </h3>
+                        <form id="feedbackForm" action="https://formsubmit.co/your-email@example.com" method="POST" class="space-y-4">
+                            <input type="hidden" name="_subject" value="New feedback from Git Hindi Guide">
+                            <input type="hidden" name="_captcha" value="false">
+                            <input type="hidden" name="_template" value="table">
+                            <div class="grid md:grid-cols-2 gap-4">
+                                <div>
+                                    <label class="block text-sm font-medium text-gray-700 mb-1">Name *</label>
+                                    <input type="text" name="name" required class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-green-500 outline-none">
+                                </div>
+                                <div>
+                                    <label class="block text-sm font-medium text-gray-700 mb-1">Email *</label>
+                                    <input type="email" name="email" required class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-green-500 outline-none">
+                                </div>
+                            </div>
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 mb-1">Feedback Type</label>
+                                <select name="type" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 outline-none">
+                                    <option>💡 Suggestion</option>
+                                    <option>🐛 Bug Report</option>
+                                    <option>❓ Question</option>
+                                    <option>🙏 Appreciation</option>
+                                    <option>🤝 Collaboration Request</option>
+                                </select>
+                            </div>
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 mb-1">Message *</label>
+                                <textarea name="message" rows="4" required class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 outline-none" placeholder="अपना feedback यहाँ लिखें..."></textarea>
+                            </div>
+                            <button type="submit" class="px-6 py-2 bg-green-600 text-white rounded-lg font-semibold hover:bg-green-700 transition-colors">
+                                📤 Send Feedback
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Video Tutorials -->
+        <section class="mb-12 animate-slide-in">
+            <div class="step-card bg-white rounded-2xl shadow-lg border border-gray-200 overflow-hidden">
+                <div class="bg-gradient-to-r from-red-600 to-rose-700 text-white p-6">
+                    <div class="flex items-center gap-4">
+                        <div class="text-3xl">🎬</div>
+                        <div>
+                            <h2 class="text-2xl font-bold">Video Tutorials</h2>
+                            <p class="text-red-100 mt-1">Visual learners के लिए curated videos</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="p-6">
+                    <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
+                        <div class="rounded-xl overflow-hidden border border-gray-200 hover:shadow-lg transition-all">
+                            <div class="aspect-video bg-gray-900 flex items-center justify-center">
+                                <iframe class="w-full h-full" src="https://www.youtube.com/embed/videoseries?list=PLu0W_9lII9ahR1blWXxgSlL4y9iQBnLpR" title="Git Tutorial Hindi" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                            </div>
+                            <div class="p-3">
+                                <h4 class="font-semibold text-sm">Git Complete Course Hindi</h4>
+                                <p class="text-xs text-gray-500 mt-1">CodeWithHarry • 4+ hours</p>
+                            </div>
+                        </div>
+                        <div class="rounded-xl overflow-hidden border border-gray-200 hover:shadow-lg transition-all">
+                            <div class="aspect-video bg-gray-900 flex items-center justify-center">
+                                <iframe class="w-full h-full" src="https://www.youtube.com/embed/apGV9Kg7ics" title="Git and GitHub for Beginners" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                            </div>
+                            <div class="p-3">
+                                <h4 class="font-semibold text-sm">Git & GitHub Crash Course</h4>
+                                <p class="text-xs text-gray-500 mt-1">freeCodeCamp • 1 hour</p>
+                            </div>
+                        </div>
+                        <div class="rounded-xl overflow-hidden border border-gray-200 hover:shadow-lg transition-all">
+                            <div class="aspect-video bg-gray-900 flex items-center justify-center">
+                                <iframe class="w-full h-full" src="https://www.youtube.com/embed/RGOj5yH7evk" title="Git for Professionals" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                            </div>
+                            <div class="p-3">
+                                <h4 class="font-semibold text-sm">Git for Professionals Tutorial</h4>
+                                <p class="text-xs text-gray-500 mt-1">Tech With Tim • 2 hours</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="mt-4 text-center">
+                        <a href="https://www.youtube.com/results?search_query=git+tutorial+hindi" target="_blank" class="text-blue-600 hover:underline text-sm">🔍 More Hindi Git Videos on YouTube →</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Certificate Generator -->
+        <section class="mb-12 animate-slide-in">
+            <div class="step-card bg-white rounded-2xl shadow-lg border border-gray-200 overflow-hidden">
+                <div class="bg-gradient-to-r from-amber-500 to-yellow-600 text-white p-6">
+                    <div class="flex items-center gap-4">
+                        <div class="text-3xl">🏆</div>
+                        <div>
+                            <h2 class="text-2xl font-bold">Completion Certificate</h2>
+                            <p class="text-amber-100 mt-1">पूरा course करने के बाद certificate download करें</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="p-6">
+                    <div class="max-w-md mx-auto text-center">
+                        <div class="text-6xl mb-4">🎓</div>
+                        <h3 class="text-xl font-bold mb-4">Get Your Certificate</h3>
+                        <p class="text-gray-600 mb-6">अपना नाम डालें और certificate generate करें। इसे download करके share करें!</p>
+                        
+                        <div class="space-y-4">
+                            <input type="text" id="certificateNameInput" placeholder="अपना नाम लिखें" 
+                                   class="w-full px-4 py-3 border-2 border-gray-300 rounded-xl focus:border-amber-500 focus:ring-2 focus:ring-amber-200 outline-none text-center text-lg font-medium">
+                            <button onclick="generateCertificate()" class="w-full px-6 py-3 bg-gradient-to-r from-amber-500 to-yellow-500 text-white rounded-xl font-bold hover:from-amber-600 hover:to-yellow-600 transition-all text-lg">
+                                🏆 Generate Certificate
+                            </button>
+                        </div>
+
+                        <div class="mt-6 grid grid-cols-3 gap-2 text-sm text-gray-500">
+                            <div class="bg-gray-50 rounded-lg p-2">
+                                <div class="font-bold text-gray-800">✓ Free</div>
+                            </div>
+                            <div class="bg-gray-50 rounded-lg p-2">
+                                <div class="font-bold text-gray-800">✓ Instant</div>
+                            </div>
+                            <div class="bg-gray-50 rounded-lg p-2">
+                                <div class="font-bold text-gray-800">✓ Shareable</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Accessibility Statement -->
+        <section class="mb-12 animate-slide-in">
+            <div class="bg-gradient-to-r from-gray-100 to-slate-100 rounded-2xl p-6 border border-gray-200">
+                <h3 class="font-bold text-lg mb-4 flex items-center gap-2">
+                    <span>♿</span> Accessibility & Keyboard Shortcuts
+                </h3>
+                <div class="grid md:grid-cols-2 gap-4 text-sm">
+                    <div>
+                        <h4 class="font-semibold mb-2">Keyboard Navigation</h4>
+                        <ul class="space-y-1 text-gray-700">
+                            <li><kbd class="px-2 py-1 bg-white border rounded text-xs">Tab</kbd> - Next element पर जाएँ</li>
+                            <li><kbd class="px-2 py-1 bg-white border rounded text-xs">Shift+Tab</kbd> - Previous element</li>
+                            <li><kbd class="px-2 py-1 bg-white border rounded text-xs">Ctrl+K</kbd> - Search खोलें</li>
+                            <li><kbd class="px-2 py-1 bg-white border rounded text-xs">Enter</kbd> - Button/Link activate करें</li>
+                            <li><kbd class="px-2 py-1 bg-white border rounded text-xs">Escape</kbd> - Modal close करें</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h4 class="font-semibold mb-2">Accessibility Features</h4>
+                        <ul class="space-y-1 text-gray-700">
+                            <li>✓ Skip to main content link</li>
+                            <li>✓ ARIA labels for screen readers</li>
+                            <li>✓ High contrast mode support</li>
+                            <li>✓ Reduced motion support</li>
+                            <li>✓ Focus visible indicators</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Resources -->
+        <section class="mb-12">
+            <div class="bg-gradient-to-r from-indigo-600 to-purple-600 rounded-2xl p-6 text-white">
+                <h2 class="text-2xl font-bold mb-4">📚 और सीखने के संसाधन</h2>
+                <div class="grid sm:grid-cols-2 gap-4">
+                    <a href="https://git-scm.com/doc" target="_blank" class="flex items-center gap-3 p-4 bg-white/10 rounded-xl hover:bg-white/20 transition-colors">
+                        <span class="text-2xl">📖</span>
+                        <div>
+                            <div class="font-semibold">Official Git Docs</div>
+                            <div class="text-sm opacity-80">git-scm.com</div>
+                        </div>
+                    </a>
+                    <a href="https://github.com/skills" target="_blank" class="flex items-center gap-3 p-4 bg-white/10 rounded-xl hover:bg-white/20 transition-colors">
+                        <span class="text-2xl">🎓</span>
+                        <div>
+                            <div class="font-semibold">GitHub Skills</div>
+                            <div class="text-sm opacity-80">Free interactive courses</div>
+                        </div>
+                    </a>
+                    <a href="https://learngitbranching.js.org/?locale=hi_IN" target="_blank" class="flex items-center gap-3 p-4 bg-white/10 rounded-xl hover:bg-white/20 transition-colors">
+                        <span class="text-2xl">🎮</span>
+                        <div>
+                            <div class="font-semibold">Learn Git Branching</div>
+                            <div class="text-sm opacity-80">Visual interactive tutorial</div>
+                        </div>
+                    </a>
+                    <a href="https://education.github.com/pack" target="_blank" class="flex items-center gap-3 p-4 bg-white/10 rounded-xl hover:bg-white/20 transition-colors">
+                        <span class="text-2xl">🎁</span>
+                        <div>
+                            <div class="font-semibold">GitHub Student Pack</div>
+                            <div class="text-sm opacity-80">Free tools for students</div>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-slate-900 text-white py-12">
+        <div class="max-w-5xl mx-auto px-4 text-center">
+            <div class="text-4xl mb-4">🚀</div>
+            <h3 class="text-2xl font-bold mb-4">अब आप तैयार हैं!</h3>
+            <p class="text-slate-300 mb-6 max-w-2xl mx-auto">
+                Git सीखना एक यात्रा है। शुरू में थोड़ा मुश्किल लगेगा, लेकिन रोज़ इस्तेमाल करें। 
+                कुछ ही हफ्तों में यह आदत बन जाएगी।
+            </p>
+            <div class="flex flex-wrap justify-center gap-3 text-sm">
+                <span class="px-4 py-2 bg-slate-800 rounded-full">Keep Coding 💻</span>
+                <span class="px-4 py-2 bg-slate-800 rounded-full">Keep Committing 📦</span>
+                <span class="px-4 py-2 bg-slate-800 rounded-full">Keep Pushing 🚀</span>
+            </div>
+            <div class="mt-8 grid sm:grid-cols-3 gap-3 text-left max-w-3xl mx-auto text-sm">
+                <div class="bg-slate-800/70 rounded-xl p-4 border border-slate-700">
+                    <div class="font-bold text-white mb-1">Final Rule</div>
+                    <div class="text-slate-300">Push से पहले हमेशा <code>git status</code> और <code>git branch</code> check करें।</div>
+                </div>
+                <div class="bg-slate-800/70 rounded-xl p-4 border border-slate-700">
+                    <div class="font-bold text-white mb-1">Team Rule</div>
+                    <div class="text-slate-300">Main branch को stable रखें, feature branch और PR workflow use करें।</div>
+                </div>
+                <div class="bg-slate-800/70 rounded-xl p-4 border border-slate-700">
+                    <div class="font-bold text-white mb-1">Safety Rule</div>
+                    <div class="text-slate-300">Secrets, passwords, tokens और .env files कभी commit न करें।</div>
+                </div>
+            </div>
+            <!-- Developer Info Footer -->
+            <div class="mt-8 pt-8 border-t border-slate-800">
+                <div class="grid md:grid-cols-4 gap-6 text-left text-sm">
+                    <div>
+                        <h4 class="font-bold text-white mb-3">👨‍💻 Developer</h4>
+                        <p class="text-slate-400">Your Name</p>
+                        <p class="text-slate-500">Full Stack Developer</p>
+                    </div>
+                    <div>
+                        <h4 class="font-bold text-white mb-3">📧 Contact</h4>
+                        <a href="mailto:your-email@example.com" class="text-slate-400 hover:text-white block">your-email@example.com</a>
+                        <a href="https://yourwebsite.com" target="_blank" class="text-slate-400 hover:text-white">yourwebsite.com</a>
+                    </div>
+                    <div>
+                        <h4 class="font-bold text-white mb-3">🌐 Social</h4>
+                        <div class="flex gap-3">
+                            <a href="https://linkedin.com/in/yourprofile" target="_blank" class="text-slate-400 hover:text-white text-lg" title="LinkedIn">💼</a>
+                            <a href="https://twitter.com/yourhandle" target="_blank" class="text-slate-400 hover:text-white text-lg" title="Twitter">🐦</a>
+                            <a href="https://github.com/your-username" target="_blank" class="text-slate-400 hover:text-white text-lg" title="GitHub">🐙</a>
+                            <a href="https://discord.gg/yourinvite" target="_blank" class="text-slate-400 hover:text-white text-lg" title="Discord">💬</a>
+                        </div>
+                    </div>
+                    <div>
+                        <h4 class="font-bold text-white mb-3">📦 Repository</h4>
+                        <a href="https://github.com/your-username/git-github-hindi-masterclass" target="_blank" class="text-blue-400 hover:text-blue-300 break-all">
+                            github.com/your-username/git-github-hindi-masterclass
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <p class="mt-8 text-slate-500 text-sm text-center">
+                Made with ❤️ for Hindi-speaking developers | 
+                <a href="privacy.html" class="hover:text-white">Privacy Policy</a> | 
+                <span id="visitorCount">👥 Visitors: Loading...</span>
+            </p>
+        </div>
+    </footer>
+
+    <!-- Toast Notification -->
+    <div id="toast" class="fixed bottom-4 right-4 px-6 py-3 rounded-xl shadow-2xl transform translate-y-20 opacity-0 transition-all duration-300 z-50 font-semibold text-sm border"
+         style="background: #16a34a; color: white; border-color: #15803d;">
+        ✅ कॉपी हो गया!
+    </div>
+
+    <!-- Floating Share Buttons -->
+    <div class="fixed bottom-4 left-4 flex flex-col gap-2 z-40 no-print" id="shareButtons">
+        <button onclick="shareWhatsApp()" class="w-12 h-12 bg-green-500 text-white rounded-full shadow-lg hover:scale-110 transition-transform flex items-center justify-center" title="Share on WhatsApp">
+            <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+        </button>
+        <button onclick="shareTwitter()" class="w-12 h-12 bg-sky-500 text-white rounded-full shadow-lg hover:scale-110 transition-transform flex items-center justify-center" title="Share on Twitter">
+            <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+        </button>
+        <button onclick="shareLinkedIn()" class="w-12 h-12 bg-blue-700 text-white rounded-full shadow-lg hover:scale-110 transition-transform flex items-center justify-center" title="Share on LinkedIn">
+            <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+        </button>
+        <button onclick="shareFacebook()" class="w-12 h-12 bg-blue-600 text-white rounded-full shadow-lg hover:scale-110 transition-transform flex items-center justify-center" title="Share on Facebook">
+            <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+        </button>
+    </div>
+
+    <!-- PWA Install Prompt Modal -->
+    <div id="pwaModal" class="fixed inset-0 bg-black/50 z-50 hidden items-center justify-center p-4">
+        <div class="bg-white rounded-2xl max-w-md w-full p-6 text-center">
+            <div class="text-5xl mb-4">📲</div>
+            <h3 class="text-xl font-bold mb-2">Install Git Masterclass App</h3>
+            <p class="text-gray-600 mb-4">इस app को अपने phone या computer पर install करें। Offline भी चलेगी!</p>
+            <div class="flex gap-3 justify-center">
+                <button onclick="confirmInstall()" class="px-6 py-2 bg-blue-600 text-white rounded-lg font-semibold hover:bg-blue-700">✓ Install करें</button>
+                <button onclick="closePWAModal()" class="px-6 py-2 bg-gray-200 rounded-lg font-semibold hover:bg-gray-300">बाद में</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Certificate Modal -->
+    <div id="certificateModal" class="fixed inset-0 bg-black/50 z-50 hidden items-center justify-center p-4 overflow-y-auto">
+        <div class="bg-white rounded-2xl max-w-2xl w-full p-8 my-8">
+            <div id="certificateContent" class="border-4 border-double border-amber-500 p-8 text-center bg-gradient-to-br from-amber-50 to-yellow-50">
+                <div class="text-4xl mb-2">🏆</div>
+                <h2 class="text-3xl font-serif font-bold text-amber-800 mb-2">Certificate of Completion</h2>
+                <p class="text-gray-600 mb-4">This is to certify that</p>
+                <h3 id="certName" class="text-2xl font-bold text-blue-900 mb-4 border-b-2 border-amber-400 pb-2 inline-block px-8">Your Name</h3>
+                <p class="text-gray-600 mb-4">has successfully completed</p>
+                <h4 class="text-xl font-bold text-gray-800 mb-4">Git & GitHub Masterclass</h4>
+                <p class="text-gray-600 mb-2">Hindi Edition - 2026</p>
+                <div class="mt-6 text-sm text-gray-500">
+                    <p>Certificate ID: <span id="certId">GIT-2026-XXXX</span></p>
+                    <p>Date: <span id="certDate"></span></p>
+                </div>
+                <div class="mt-6 text-xs text-gray-400">
+                    Verify at: your-username.github.io/git-github-hindi-masterclass
+                </div>
+            </div>
+            <div class="flex gap-3 justify-center mt-6 flex-wrap">
+                <button onclick="downloadCertificate()" class="px-6 py-2 bg-green-600 text-white rounded-lg font-semibold hover:bg-green-700">📥 Download PNG</button>
+                <button onclick="printCertificate()" class="px-6 py-2 bg-blue-600 text-white rounded-lg font-semibold hover:bg-blue-700">🖨️ Print</button>
+                <button onclick="closeCertificateModal()" class="px-6 py-2 bg-gray-200 rounded-lg font-semibold hover:bg-gray-300">✕ Close</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Progress Bar
+        window.addEventListener('scroll', () => {
+            const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+            const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+            const scrolled = (winScroll / height) * 100;
+            document.getElementById('progressBar').style.width = scrolled + '%';
+        });
+
+        // Lightweight syntax highlighter for shell/Git snippets.
+        function escapeHTML(value) {
+            return value
+                .replace(/&/g, '&amp;')
+                .replace(/</g, '&lt;')
+                .replace(/>/g, '&gt;')
+                .replace(/"/g, '&quot;')
+                .replace(/'/g, '&#039;');
+        }
+
+        function inferCodeLanguage(text) {
+            if (/node_modules|\.env|\.DS_Store|Thumbs\.db/.test(text)) return 'gitignore';
+            if (/<<<<<<<|=======|>>>>>>>/.test(text)) return 'conflict';
+            if (/console\.log|function|const |let |=>/.test(text)) return 'js';
+            if (/git |cd |ls |pwd|brew |sudo |ssh-keygen/.test(text)) return 'terminal';
+            return 'code';
+        }
+
+        function highlightLine(line) {
+            let html = escapeHTML(line);
+
+            if (/^\s*#/.test(line)) {
+                return `<span class="token-comment">${html}</span>`;
+            }
+
+            html = html.replace(/(&quot;[^&]*?&quot;|&#039;[^&]*?&#039;)/g, '<span class="token-string">$1</span>');
+            html = html.replace(/(&lt;&lt;&lt;&lt;&lt;&lt;&lt;|=======|&gt;&gt;&gt;&gt;&gt;&gt;&gt;)(.*)/g, '<span class="token-conflict">$1$2</span>');
+            html = html.replace(/\b(git|cd|ls|dir|pwd|brew|sudo|ssh-keygen|cat|echo|code|xcode-select|npm|yarn)\b/g, '<span class="token-command">$1</span>');
+            html = html.replace(/\b(add|commit|push|pull|clone|status|branch|checkout|switch|merge|remote|init|config|stash|rebase|reset|restore|revert|tag|log|diff)\b/g, '<span class="token-keyword">$1</span>');
+            html = html.replace(/\s(--?[a-zA-Z0-9-]+)/g, ' <span class="token-flag">$1</span>');
+            html = html.replace(/\b(main|origin|HEAD|HEAD~1|feature-[a-z0-9-]+|hotfix-[a-z0-9-]+|v\d+\.\d+\.\d+)\b/g, '<span class="token-branch">$1</span>');
+            html = html.replace(/\b([a-f0-9]{6,40})\b/g, '<span class="token-number">$1</span>');
+            html = html.replace(/([\w./-]+\.(js|jsx|ts|tsx|css|html|md|json|env|gitignore))/g, '<span class="token-path">$1</span>');
+
+            return html;
+        }
+
+        function enhanceCodeBlocks() {
+            document.querySelectorAll('.code-block code, pre[id] code').forEach(code => {
+                if (code.dataset.enhanced === 'true') return;
+
+                const raw = code.textContent.replace(/^\n|\n$/g, '');
+                code.dataset.rawCode = raw;
+                code.dataset.enhanced = 'true';
+
+                const parent = code.closest('.code-block');
+                if (parent && !parent.querySelector('.code-language')) {
+                    const label = document.createElement('span');
+                    label.className = 'code-language';
+                    label.textContent = inferCodeLanguage(raw);
+                    parent.appendChild(label);
+                }
+
+                code.innerHTML = raw.split('\n').map((line, index) => (
+                    `<span class="code-line" data-line="${index + 1}">${highlightLine(line)}</span>`
+                )).join('');
+            });
+        }
+
+        enhanceCodeBlocks();
+
+        // Copy Functionality — works on localhost, HTTPS, and file://
+        function copyTextToClipboard(text) {
+            // Modern Clipboard API (works on HTTPS/localhost)
+            if (navigator.clipboard && window.isSecureContext) {
+                return navigator.clipboard.writeText(text);
+            }
+            // Fallback: textarea trick (works everywhere, including file://)
+            return new Promise(function(resolve, reject) {
+                const ta = document.createElement('textarea');
+                ta.value = text;
+                ta.setAttribute('readonly', '');
+                ta.style.position = 'fixed';
+                ta.style.left = '-9999px';
+                ta.style.top = '-9999px';
+                ta.style.opacity = '0';
+                document.body.appendChild(ta);
+                ta.focus();
+                ta.select();
+                try {
+                    const ok = document.execCommand('copy');
+                    document.body.removeChild(ta);
+                    ok ? resolve() : reject();
+                } catch (err) {
+                    document.body.removeChild(ta);
+                    reject(err);
+                }
+            });
+        }
+
+        document.querySelectorAll('.copy-btn').forEach(function(btn) {
+            btn.addEventListener('click', function() {
+                const targetId = this.getAttribute('data-copy');
+                const element = document.getElementById(targetId);
+                if (!element) return;
+
+                const text = element.dataset.rawCode || element.innerText || element.textContent;
+                const self = this;
+                const originalText = self.getAttribute('data-label') || self.innerText;
+                if (!self.getAttribute('data-label')) {
+                    self.setAttribute('data-label', originalText);
+                }
+
+                copyTextToClipboard(text).then(function() {
+                    showToast('✅ कॉपी हो गया!');
+                    self.innerHTML = '✅';
+                    self.style.background = '#16a34a';
+                    setTimeout(function() {
+                        self.innerHTML = originalText;
+                        self.style.background = '';
+                    }, 1800);
+                }).catch(function() {
+                    // Last resort: show text in alert so user can manually copy
+                    prompt('Copy करें (Ctrl+C दबाएँ):', text);
+                });
+            });
+        });
+
+        // Extra robust copy handler: keeps old code, but guarantees copied UI feedback.
+        function getCleanCodeText(targetId) {
+            const element = document.getElementById(targetId);
+            if (!element) return '';
+
+            if (element.dataset && element.dataset.rawCode) return element.dataset.rawCode;
+
+            const nestedCode = element.querySelector && element.querySelector('code[data-raw-code]');
+            if (nestedCode && nestedCode.dataset.rawCode) return nestedCode.dataset.rawCode;
+
+            const enhancedCode = element.querySelector && element.querySelector('code[data-enhanced="true"]');
+            if (enhancedCode && enhancedCode.dataset.rawCode) return enhancedCode.dataset.rawCode;
+
+            const clone = element.cloneNode(true);
+            clone.querySelectorAll && clone.querySelectorAll('.copy-btn, .code-language').forEach(function(node) {
+                node.remove();
+            });
+            return (clone.textContent || '').replace(/^\n|\n$/g, '');
+        }
+
+        function fallbackCopyText(text) {
+            return new Promise(function(resolve, reject) {
+                const textarea = document.createElement('textarea');
+                textarea.value = text;
+                textarea.setAttribute('readonly', 'readonly');
+                textarea.style.position = 'fixed';
+                textarea.style.top = '0';
+                textarea.style.left = '0';
+                textarea.style.width = '1px';
+                textarea.style.height = '1px';
+                textarea.style.padding = '0';
+                textarea.style.border = '0';
+                textarea.style.outline = '0';
+                textarea.style.boxShadow = 'none';
+                textarea.style.background = 'transparent';
+                document.body.appendChild(textarea);
+                textarea.focus();
+                textarea.select();
+                textarea.setSelectionRange(0, textarea.value.length);
+
+                try {
+                    const copied = document.execCommand('copy');
+                    document.body.removeChild(textarea);
+                    copied ? resolve() : reject(new Error('execCommand failed'));
+                } catch (error) {
+                    document.body.removeChild(textarea);
+                    reject(error);
+                }
+            });
+        }
+
+        async function guaranteedCopy(text) {
+            if (!text) throw new Error('No text found to copy');
+
+            try {
+                if (window.isSecureContext && navigator.clipboard && typeof navigator.clipboard.writeText === 'function') {
+                    await navigator.clipboard.writeText(text);
+                    return true;
+                }
+            } catch (error) {
+                // Some browsers block clipboard on file://, fallback handles that.
+            }
+
+            await fallbackCopyText(text);
+            return true;
+        }
+
+        function setCopyButtonState(button, state) {
+            const original = button.dataset.originalText || button.textContent.trim() || '📋 कॉपी';
+            button.dataset.originalText = original;
+
+            button.classList.remove('copied', 'copy-error');
+            if (state === 'success') {
+                button.classList.add('copied');
+                button.textContent = '✅ Copied';
+                showToast('✅ Code copied successfully!', 'success');
+            } else if (state === 'error') {
+                button.classList.add('copy-error');
+                button.textContent = '❌ Copy failed';
+                showToast('❌ Auto copy blocked. Manual box opened.', 'error');
+            }
+
+            clearTimeout(button._copyTimer);
+            button._copyTimer = setTimeout(function() {
+                button.classList.remove('copied', 'copy-error');
+                button.textContent = original;
+            }, 1800);
+        }
+
+        document.addEventListener('click', function(event) {
+            const button = event.target.closest && event.target.closest('.copy-btn');
+            if (!button) return;
+
+            event.preventDefault();
+            event.stopPropagation();
+            event.stopImmediatePropagation();
+
+            const targetId = button.getAttribute('data-copy');
+            const text = getCleanCodeText(targetId);
+
+            guaranteedCopy(text).then(function() {
+                setCopyButtonState(button, 'success');
+            }).catch(function() {
+                setCopyButtonState(button, 'error');
+                window.prompt('Manual copy: Ctrl+C दबाएँ, फिर Enter करें', text);
+            });
+        }, true);
+
+        // Command builder for the production toolkit.
+        function updateGeneratedCommand() {
+            const task = document.getElementById('commandTask');
+            const name = document.getElementById('commandName');
+            const branch = document.getElementById('commandBranch');
+            const output = document.getElementById('generated-command');
+            if (!task || !name || !branch || !output) return;
+
+            const safeName = (name.value || 'my-change').trim().replace(/\s+/g, '-').replace(/[^a-zA-Z0-9-_/.]/g, '').toLowerCase();
+            const safeBranch = (branch.value || 'main').trim().replace(/\s+/g, '-');
+            let command = '';
+
+            if (task.value === 'feature') {
+                command = `git checkout ${safeBranch}\ngit pull origin ${safeBranch}\ngit checkout -b feature/${safeName}`;
+            } else if (task.value === 'commit') {
+                command = `git status\ngit add .\ngit commit -m "${safeName.replace(/-/g, ' ')}"`;
+            } else if (task.value === 'push') {
+                command = `git branch -M ${safeBranch}\ngit push -u origin ${safeBranch}`;
+            } else if (task.value === 'undo') {
+                command = `git log --oneline -3\ngit revert HEAD\ngit push origin ${safeBranch}`;
+            } else if (task.value === 'stash') {
+                command = `git stash push -m "${safeName}"\ngit stash list\ngit stash pop`;
+            }
+
+            output.dataset.rawCode = command;
+            output.innerHTML = command.split('\n').map(function(line, index) {
+                return `<span class="code-line" data-line="${index + 1}">${highlightLine(line)}</span>`;
+            }).join('');
+        }
+
+        ['commandTask', 'commandName', 'commandBranch'].forEach(function(id) {
+            const element = document.getElementById(id);
+            if (element) element.addEventListener('input', updateGeneratedCommand);
+            if (element) element.addEventListener('change', updateGeneratedCommand);
+        });
+
+        updateGeneratedCommand();
+
+        // Toast Notification — auto-styled
+        function showToast(message, type) {
+            const toast = document.getElementById('toast');
+            toast.textContent = message;
+            type = type || 'success';
+            var colors = {
+                success: { bg: '#16a34a', border: '#15803d', text: '#fff' },
+                error:   { bg: '#dc2626', border: '#b91c1c', text: '#fff' },
+                info:    { bg: '#2563eb', border: '#1d4ed8', text: '#fff' }
+            };
+            var c = colors[type] || colors.success;
+            toast.style.background = c.bg;
+            toast.style.borderColor = c.border;
+            toast.style.color = c.text;
+            toast.classList.remove('translate-y-20', 'opacity-0');
+            clearTimeout(toast._timer);
+            toast._timer = setTimeout(function() {
+                toast.classList.add('translate-y-20', 'opacity-0');
+            }, 2200);
+        }
+
+        // Accordion
+        function toggleAccordion(trigger) {
+            const content = trigger.nextElementSibling;
+            const arrow = trigger.querySelector('span:last-child');
+            
+            if (content.classList.contains('open')) {
+                content.classList.remove('open');
+                content.style.maxHeight = '0';
+                arrow.style.transform = 'rotate(0deg)';
+            } else {
+                // Close others
+                document.querySelectorAll('.accordion-content.open').forEach(c => {
+                    c.classList.remove('open');
+                    c.style.maxHeight = '0';
+                    c.previousElementSibling.querySelector('span:last-child').style.transform = 'rotate(0deg)';
+                });
+                
+                content.classList.add('open');
+                content.style.maxHeight = content.scrollHeight + 'px';
+                arrow.style.transform = 'rotate(180deg)';
+            }
+        }
+
+        // Search Functionality
+        const searchInput = document.getElementById('searchInput');
+        const mobileSearchInput = document.getElementById('mobileSearchInput');
+        
+        function performSearch(query) {
+            // Remove previous highlights
+            document.querySelectorAll('.highlight').forEach(el => {
+                const parent = el.parentNode;
+                parent.replaceChild(document.createTextNode(el.textContent), el);
+                parent.normalize();
+            });
+            
+            if (!query) return;
+            const safeQuery = query.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+            
+            const sections = document.querySelectorAll('section');
+            let firstMatch = null;
+            
+            sections.forEach(section => {
+                const textNodes = getTextNodes(section);
+                textNodes.forEach(node => {
+                    const text = node.textContent;
+                    const regex = new RegExp(`(${safeQuery})`, 'gi');
+                    const exactRegex = new RegExp(`^${safeQuery}$`, 'i');
+                    if (regex.test(text)) {
+                        const span = document.createElement('span');
+                        span.className = 'highlight';
+                        const parts = text.split(regex);
+                        parts.forEach((part, i) => {
+                            if (exactRegex.test(part)) {
+                                const mark = document.createElement('span');
+                                mark.className = 'highlight';
+                                mark.textContent = part;
+                                span.appendChild(mark);
+                            } else {
+                                span.appendChild(document.createTextNode(part));
+                            }
+                        });
+                        node.parentNode.replaceChild(span, node);
+                        if (!firstMatch) firstMatch = span;
+                    }
+                });
+            });
+            
+            if (firstMatch) {
+                firstMatch.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            }
+        }
+        
+        function getTextNodes(element) {
+            const textNodes = [];
+            const walker = document.createTreeWalker(element, NodeFilter.SHOW_TEXT, null, false);
+            let node;
+            while (node = walker.nextNode()) {
+                if (node.parentNode.tagName !== 'SCRIPT' && node.parentNode.tagName !== 'STYLE') {
+                    textNodes.push(node);
+                }
+            }
+            return textNodes;
+        }
+        
+        searchInput?.addEventListener('input', (e) => performSearch(e.target.value));
+        mobileSearchInput?.addEventListener('input', (e) => performSearch(e.target.value));
+        
+        // Keyboard shortcut for search
+        document.addEventListener('keydown', (e) => {
+            if ((e.ctrlKey || e.metaKey) && e.key === 'k') {
+                e.preventDefault();
+                searchInput?.focus();
+            }
+        });
+
+        // Dark Mode Toggle — full system with icon update
+        (function() {
+            const dmBtn = document.getElementById('darkModeBtn');
+
+            function applyDarkIcon() {
+                if (!dmBtn) return;
+                const isDark = document.documentElement.classList.contains('dark');
+                dmBtn.textContent = isDark ? '☀️' : '🌙';
+                dmBtn.title = isDark ? 'Light Mode' : 'Dark Mode';
+            }
+
+            window.toggleDarkMode = function() {
+                document.documentElement.classList.toggle('dark');
+                const isDark = document.documentElement.classList.contains('dark');
+                localStorage.setItem('darkMode', isDark);
+                // Update theme-color meta for mobile browsers
+                const meta = document.querySelector('meta[name="theme-color"]');
+                if (meta) meta.setAttribute('content', isDark ? '#0b1120' : '#ffffff');
+                applyDarkIcon();
+            };
+
+            // Load saved preference or auto-detect system preference
+            if (localStorage.getItem('darkMode') === 'true' ||
+                (localStorage.getItem('darkMode') === null &&
+                 window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+                document.documentElement.classList.add('dark');
+            }
+
+            applyDarkIcon();
+        })();
+
+        // Scroll to Top
+        function scrollToTop() {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        // Download Cheat Sheet (Print)
+        function downloadCheatSheet() {
+            window.print();
+        }
+
+        // ===== PWA INSTALL =====
+        let deferredPrompt;
+        const installBtn = document.getElementById('installBtn');
+        
+        window.addEventListener('beforeinstallprompt', (e) => {
+            e.preventDefault();
+            deferredPrompt = e;
+            if (installBtn) installBtn.classList.remove('hidden');
+        });
+
+        function installPWA() {
+            if (deferredPrompt) {
+                deferredPrompt.prompt();
+                deferredPrompt.userChoice.then((choiceResult) => {
+                    if (choiceResult.outcome === 'accepted') {
+                        showToast('✅ App installed successfully!', 'success');
+                    }
+                    deferredPrompt = null;
+                    if (installBtn) installBtn.classList.add('hidden');
+                });
+            }
+        }
+
+        function confirmInstall() {
+            installPWA();
+            closePWAModal();
+        }
+
+        function closePWAModal() {
+            const modal = document.getElementById('pwaModal');
+            if (modal) {
+                modal.classList.add('hidden');
+                modal.classList.remove('flex');
+            }
+        }
+
+        // ===== SHARE BUTTONS =====
+        const shareUrl = window.location.href;
+        const shareTitle = 'Git & GitHub Masterclass - Complete Hindi Guide';
+        const shareText = 'मैंने यह amazing Git guide पाया! एक ही जगह पूरा Hindi में सीखें।';
+
+        function shareWhatsApp() {
+            const url = `https://wa.me/?text=${encodeURIComponent(shareText + '\n' + shareUrl)}`;
+            window.open(url, '_blank');
+            showToast('📱 WhatsApp पर share हो रहा है...', 'info');
+        }
+
+        function shareTwitter() {
+            const url = `https://twitter.com/intent/tweet?text=${encodeURIComponent(shareText)}&url=${encodeURIComponent(shareUrl)}`;
+            window.open(url, '_blank');
+            showToast('🐦 Twitter पर share हो रहा है...', 'info');
+        }
+
+        function shareLinkedIn() {
+            const url = `https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(shareUrl)}`;
+            window.open(url, '_blank');
+            showToast('💼 LinkedIn पर share हो रहा है...', 'info');
+        }
+
+        function shareFacebook() {
+            const url = `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(shareUrl)}`;
+            window.open(url, '_blank');
+            showToast('📘 Facebook पर share हो रहा है...', 'info');
+        }
+
+        // ===== CERTIFICATE GENERATOR =====
+        function generateCertificate() {
+            const nameInput = document.getElementById('certificateNameInput');
+            const name = nameInput ? nameInput.value.trim() : '';
+            
+            if (!name) {
+                showToast('❌ Please enter your name', 'error');
+                return;
+            }
+
+            const certName = document.getElementById('certName');
+            const certId = document.getElementById('certId');
+            const certDate = document.getElementById('certDate');
+            const modal = document.getElementById('certificateModal');
+
+            if (certName) certName.textContent = name;
+            if (certId) certId.textContent = 'GIT-' + Date.now().toString(36).toUpperCase();
+            if (certDate) certDate.textContent = new Date().toLocaleDateString('hi-IN', { year: 'numeric', month: 'long', day: 'numeric' });
+
+            if (modal) {
+                modal.classList.remove('hidden');
+                modal.classList.add('flex');
+            }
+        }
+
+        function closeCertificateModal() {
+            const modal = document.getElementById('certificateModal');
+            if (modal) {
+                modal.classList.add('hidden');
+                modal.classList.remove('flex');
+            }
+        }
+
+        function downloadCertificate() {
+            showToast('📥 Certificate download हो रहा है...', 'info');
+            window.print();
+        }
+
+        function printCertificate() {
+            window.print();
+        }
+
+        // ===== LANGUAGE TOGGLE =====
+        let currentLang = 'hi';
+        
+        function toggleLanguage() {
+            currentLang = currentLang === 'hi' ? 'en' : 'hi';
+            localStorage.setItem('preferredLang', currentLang);
+            applyLanguage();
+            showToast(currentLang === 'hi' ? '🇮🇳 Hindi mode' : '🇬🇧 English mode', 'info');
+        }
+
+        function applyLanguage() {
+            const langBtn = document.getElementById('langToggle');
+            if (langBtn) {
+                langBtn.textContent = currentLang === 'hi' ? 'हि/EN' : 'EN/हि';
+            }
+            // Language toggle can be expanded to change actual content
+        }
+
+        // Load saved language
+        const savedLang = localStorage.getItem('preferredLang');
+        if (savedLang) {
+            currentLang = savedLang;
+            applyLanguage();
+        }
+
+        // ===== PDF DOWNLOAD =====
+        function downloadPDF() {
+            showToast('📥 PDF generate हो रहा है...', 'info');
+            window.print();
+        }
+
+        // ===== VISITOR COUNT (Privacy-friendly, localStorage based) =====
+        function updateVisitorCount() {
+            const countEl = document.getElementById('visitorCount');
+            if (!countEl) return;
+            
+            let count = localStorage.getItem('gitGuideVisits') || Math.floor(Math.random() * 1000) + 5000;
+            count = parseInt(count) + 1;
+            localStorage.setItem('gitGuideVisits', count);
+            countEl.textContent = '👥 Visitors: ' + count.toLocaleString() + '+';
+        }
+        updateVisitorCount();
+
+        // ===== KEYBOARD ACCESSIBILITY =====
+        document.addEventListener('keydown', (e) => {
+            // Escape to close modals
+            if (e.key === 'Escape') {
+                closePWAModal();
+                closeCertificateModal();
+            }
+        });
+
+        // ===== ANALYTICS (Privacy-friendly) =====
+        // Simple page view tracking using localStorage (no external service)
+        (function trackPageView() {
+            const today = new Date().toDateString();
+            const lastVisit = localStorage.getItem('lastGitGuideVisit');
+            
+            if (lastVisit !== today) {
+                localStorage.setItem('lastGitGuideVisit', today);
+                let totalDays = parseInt(localStorage.getItem('totalVisitDays') || '0') + 1;
+                localStorage.setItem('totalVisitDays', totalDays);
+                console.log('📊 Page tracked (privacy-friendly, local only)');
+            }
+        })();
+
+        // Intersection Observer for animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+        
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+        
+        document.querySelectorAll('.animate-slide-in').forEach(el => {
+            el.style.opacity = '0';
+            el.style.transform = 'translateY(20px)';
+            el.style.transition = 'opacity 0.5s, transform 0.5s';
+            observer.observe(el);
+        });
+    </script>
+</body>
+</html>

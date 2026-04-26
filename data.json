@@ -1,0 +1,67 @@
+{
+  "appName": "Git & GitHub Masterclass Hindi",
+  "version": "2.0.0",
+  "versionName": "2026 Latest Production Edition",
+  "developer": {
+    "name": "Your Name",
+    "email": "your-email@example.com",
+    "linkedin": "https://linkedin.com/in/yourprofile",
+    "twitter": "https://twitter.com/yourhandle",
+    "website": "https://yourwebsite.com",
+    "github": "https://github.com/your-username"
+  },
+  "repoUrl": "https://github.com/your-username/git-github-hindi-masterclass",
+  "demoUrl": "https://your-username.github.io/git-github-hindi-masterclass",
+  "license": "MIT",
+  "features": [
+    "Complete Hindi Git Guide",
+    "20+ Sections",
+    "60+ Code Examples",
+    "Responsive UI",
+    "Dark/Light Mode",
+    "Copy to Clipboard",
+    "PWA Support",
+    "Offline Capable",
+    "Certificate Generator",
+    "Video Tutorials",
+    "Interactive Quiz",
+    "Terminal Simulator",
+    "Command Builder",
+    "Production Checklist",
+    "Interview Prep",
+    "Glossary",
+    "Share Buttons",
+    "Feedback Form",
+    "Community Links",
+    "Accessibility Support",
+    "Print/PDF Download"
+  ],
+  "techStack": [
+    "HTML5",
+    "CSS3",
+    "Tailwind CSS (CDN)",
+    "Vanilla JavaScript",
+    "Service Workers",
+    "Web App Manifest"
+  ],
+  "keywords": [
+    "git",
+    "github",
+    "hindi",
+    "tutorial",
+    "guide",
+    "version control",
+    "programming",
+    "developer",
+    "learn git",
+    "git commands"
+  ],
+  "category": "Education",
+  "language": "hi",
+  "audience": [
+    "Hindi speaking developers",
+    "Beginners",
+    "Students",
+    "Professionals"
+  ]
+}
